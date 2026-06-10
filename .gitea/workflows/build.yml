@@ -18,8 +18,10 @@ jobs:
 
       # Setup pnpm
       # https://stackoverflow.com/questions/76664013/how-to-use-pnpm-instead-of-npm-in-github-actions
+      # Setup to use v4
+      # https://github.com/pnpm/action-setup/issues/135
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
 
       # Attempt to cache the dependencies
       # TODO Fix this to work
