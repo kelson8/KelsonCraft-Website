@@ -1,7 +1,7 @@
 {
   "name": "kelsoncraft-astro",
   "type": "module",
-  "license": "",
+  "license": "AGPL-3.0-or-later",
   "version": "0.0.1",
   "engines": {
     "node": ">=22.12.0"
