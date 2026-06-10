@@ -21,5 +21,11 @@ export default defineConfig({
     mode: "standalone", // Standalone server mode
   }),
 
-  integrations: [react(), icon(), expressiveCode(), mdx()],
+  // integrations: [react(), icon(), expressiveCode(), mdx()],
+  integrations: [react(), icon(),
+    expressiveCode({
+      // themes: [expressiveCodeDarkTheme, expressiveCodeDarkTheme],
+      themes: ["dracula", "solarized-light"],
+    }),
+    mdx()],
 });

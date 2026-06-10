@@ -51,11 +51,11 @@ const { title = websiteName } = Astro.props;
 	</head>
 	<body>
 
-	<!-- Using new navbar from here https://github.com/surjithctly/astro-navbar -->
+	{/* Using new navbar from here https://github.com/surjithctly/astro-navbar */}
 	<Navbar />
 		<main>
-			<!-- Don't enable the background styles here, shadcn takes care of that. -->
-			<!--<div class="p-4 sm:p-6 lg:p-8 dark:bg-gray-800 bg-white">-->
+			{/* Don't enable the background styles here, shadcn takes care of that. */}
+			{/* <div class="p-4 sm:p-6 lg:p-8 dark:bg-gray-800 bg-white"> */}
 			<div class="p-4 sm:p-6 lg:p-8">
 				<br></br>
 				<br></br>
@@ -67,7 +67,7 @@ const { title = websiteName } = Astro.props;
 			</div>
 		</main>
 
-	<!--<div class="flex items-center bg-blue-500 px-4 py-2 text-white hover:bg-blue-400 rounded-full fixed bottom-2 right-2">-->
+	{/* <div class="flex items-center bg-blue-500 px-4 py-2 text-white hover:bg-blue-400 rounded-full fixed bottom-2 right-2"> */}
 	<div class="flex items-center px-4 py-2  rounded-full fixed bottom-2 right-2">
 		<ThemeToggle client:load />
 	</div>
