@@ -39,6 +39,10 @@ int main() {
 }
 `;
 
+// console.log(`Url: ${Astro.url}\n
+// Url Path: ${Astro.url.pathname}\n
+// Url origin: ${Astro.url.origin}`)
+
 // Hmm, I wonder if I can render like with TSX? I don't think .astro files support that.
 // const displayCodeBlock = () => {
 //     return (
@@ -62,14 +66,16 @@ int main() {
   <!-- I added a custom link component -->
   <!--<Link href="/">Home page</Link>-->
 
+  <p>Welcome to the about page for the website. </p>
+
   <p>
-    Coding languages that I know: <Link href="/about/coding-info"
+    Here is a list of coding languages that I know: <Link href="/about/coding-info"
       >/about/coding-info</Link>
   </p>
 
   {/* I didn't know I could make code block tags */}
-  <br />
-  <Code code={javaScriptCode1} lang="js" />
+  <!--<br />-->
+  <!--<Code code={javaScriptCode1} lang="ts" />-->
   <!--<Code code="console.log('Hello world!')" lang="js" />-->
 
   <!--<Code code={CPPHelloWorld} lang="cpp" />-->

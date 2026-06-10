@@ -5,6 +5,18 @@
 # Ignore everything recursively
 *
 
+# Ignore artifacts
+build
+coverage
+
+# Ignore text files
+*.json
+*.yml
+*.md
+*.yaml
+*.yml
+*.mjs
+
 # But not the .ts files
 !*.ts
 
