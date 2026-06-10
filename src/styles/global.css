@@ -3,7 +3,8 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/figtree";
 
-/*@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));*/
+/* This works with Shadcn and my Tailwind theme toggle button. */
+@custom-variant dark (&:where([class=dark], [class=dark] *));
 
 /*https://oklch.fyi/create
 
