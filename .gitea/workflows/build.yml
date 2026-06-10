@@ -1,0 +1,43 @@
+name: Deployment Workflow
+
+# https://dev.to/yousufbasir/automating-nextjs-application-deployment-with-github-actions-38ac
+
+# Trigger this workflow on pushes to the specified branch
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Setup pnpm
+      # https://stackoverflow.com/questions/76664013/how-to-use-pnpm-instead-of-npm-in-github-actions
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+
+      # Attempt to cache the dependencies
+      # TODO Fix this to work
+      # https://emilianoloza.com/post/speeding-actions-with-cache/
+      #      - name: Cache Node.js dependencies
+      #        uses: actions/cache@v4
+      #        with:
+      #          path: ~/.npm
+      #          key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
+      #          restore-keys: |
+      #            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      # I might use this in the future.
+#      - name: Generate prisma files
+#        run: pnpm run generate:prisma-db
+
+      - name: Build Astro website
+        run: pnpm run build

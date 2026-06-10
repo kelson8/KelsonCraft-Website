@@ -1,0 +1,21 @@
+---
+// Full list of options: https://github.com/sampotts/plyr#options
+
+// Default props for the plyr video player, can be modified here.
+export const defaultPlyrProps = [
+    "play-large",
+    "play",
+    "progress",
+    "current-time",
+    "mute",
+    "volume",
+    "captions",
+    "settings",
+    "pip",
+    "airplay",
+    "fullscreen"
+]
+
+// Add download onto the props to allow downloading of videos.
+export const downloadPlyrProps = defaultPlyrProps.concat("download");
+---

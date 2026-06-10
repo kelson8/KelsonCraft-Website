@@ -1,7 +1,7 @@
 ---
 // import { Footer } from '../components/footer';
 import Footer from '../components/footer.astro';
-import Navbar from '../components/navbar'
+import Navbar from '../components/navbar.astro'
 import '../styles/global.css'
 import {containerPageClass, websiteName} from "../util/constants.ts";
 
@@ -51,8 +51,8 @@ const { title = websiteName } = Astro.props;
 	</head>
 	<body>
 
-	{/* I can just reuse my React components for now! That's amazing */}
-	<Navbar client:load />
+	<!-- Using new navbar from here https://github.com/surjithctly/astro-navbar -->
+	<Navbar />
 		<main>
 			<!-- Don't enable the background styles here, shadcn takes care of that. -->
 			<!--<div class="p-4 sm:p-6 lg:p-8 dark:bg-gray-800 bg-white">-->

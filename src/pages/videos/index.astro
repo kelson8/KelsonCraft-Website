@@ -1,0 +1,24 @@
+---
+import BaseLayout from "@/layouts/base-layout.astro";
+
+// import { Icon } from 'astro-icon/components'
+import Link from "@/components/link.astro";
+
+// https://docs.astro.build/en/guides/routing/#dynamic-routes
+
+
+// TODO Make this auto generate from a list.
+videoName = "test.webm"
+const videoUrl = "http://localhost:4321/videos/" + videoName;
+
+---
+
+<BaseLayout title="Videos">
+
+    <h1 class="text-4xl text-indigo-500 text-center text-bold p-6">Videos Page
+        <!--<Icon name="material-symbols:info" />-->
+    </h1>
+
+    <Link href={videoUrl}>{videoName}</Link>
+
+</BaseLayout>
