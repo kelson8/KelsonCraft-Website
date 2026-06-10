@@ -1,0 +1,110 @@
+---
+// Originally obtained from my about page on the Next.js website
+// https://github.com/kelson8/KelsonCraft-NextJS/blob/master/src/app/about/page.tsx
+import Table from '../../components/table.astro';
+import BaseLayout from '../../layouts/base-layout.astro';
+
+// Define your table structure
+const tableHeaders = ["Language", "Description"];
+
+const tableRows = [
+    ["Java", "This is where I really started coding and probably what really got me into tech. Back in 2013 I started becoming interested in Spigot coding for Minecraft."],
+    ["Python", "I have messed around with Python quite a bit and have made a ton of small scripts and stuff with it."],
+    ["Lua", "I have mostly messed around with FiveM scripts using lua, it's not a bad scripting language to get stuff done quickly."],
+    ["Web Dev", "I know enough Html and CSS to build a basic website. Also, I'm decent at Javascript/Typescript and have pretty much rebuilt my website with Typescript and NextJS."],
+    ["C#", "I have messed around with ImGui, GTA 5 modding and other game mods in C#."],
+    ["C++", "I have been learning quite a bit of C++ using SFML for game development and using ImGui to mess around with. Although, it has been a little while since I have last done a project or anything with C++."],
+];
+
+---
+
+
+
+<BaseLayout title="Coding Languages I know">
+    <h1 class="text-2xl font-bold mb-4">Coding Languages that I know</h1>
+
+    {/* Render the reusable table */}
+    <Table headers={tableHeaders} rows={tableRows} />
+
+</BaseLayout>
+
+<!--<div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">-->
+<!--    <table class="w-full text-sm text-left rtl:text-right text-body">-->
+<!--        <thead class="text-sm text-body bg-neutral-secondary-soft border-b rounded-base border-default">-->
+<!--        <tr>-->
+<!--            <th scope="col" class="px-6 py-3 font-medium">-->
+<!--                Language-->
+<!--            </th>-->
+<!--            <th scope="col" class="px-6 py-3 font-medium">-->
+<!--                Description-->
+<!--            </th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+
+<!--        <tbody>-->
+
+<!--        <tr class="bg-neutral-primary border-b border-default">-->
+<!--            <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">-->
+<!--                Java-->
+<!--            </th>-->
+<!--            <td class="px-6 py-4">-->
+<!--                This is where I really started coding and probably what really got me into tech.-->
+<!--                Back in 2013 I started becoming interested in Spigot coding for Minecraft.-->
+<!--            </td>-->
+<!--        </tr>-->
+
+<!--        <tr class="bg-neutral-primary border-b border-default">-->
+<!--            <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">-->
+<!--                Python-->
+<!--            </th>-->
+<!--            <td class="px-6 py-4">-->
+<!--                I have messed around with Python quite a bit and have made a ton of small-->
+<!--                scripts and stuff with it. I might eventually publish them, but I had some files that I-->
+<!--                can&#39;t publically share in the repo.-->
+<!--            </td>-->
+<!--        </tr>-->
+
+<!--        <tr class="bg-neutral-primary border-b border-default">-->
+<!--            <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">-->
+<!--                Lua-->
+<!--            </th>-->
+<!--            <td class="px-6 py-4">-->
+<!--                I have mostly messed around with FiveM scripts using lua, it&#39;s not a bad scripting-->
+<!--                language to get stuff done quickly.-->
+<!--            </td>-->
+<!--        </tr>-->
+
+<!--        <tr class="bg-neutral-primary border-b border-default">-->
+<!--            <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">-->
+<!--                Web dev (Html, CSS, Javascript, Typescript)-->
+<!--            </th>-->
+<!--            <td class="px-6 py-4">-->
+<!--                I know enough Html and CSS to build a basic website.-->
+<!--                Also, I&#39;m decent at Javascript/Typescript and have pretty much rebuilt my website with-->
+<!--                Typescript and NextJS.-->
+<!--            </td>-->
+<!--        </tr>-->
+
+<!--        <tr class="bg-neutral-primary border-b border-default">-->
+<!--            <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">-->
+<!--                C#-->
+<!--            </th>-->
+<!--            <td class="px-6 py-4">-->
+<!--                I have messed around with ImGui, GTA 5 modding and other game mods in C#.-->
+<!--            </td>-->
+<!--        </tr>-->
+
+<!--        <tr class="bg-neutral-primary border-b border-default">-->
+<!--            <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">-->
+<!--                C++-->
+<!--            </th>-->
+<!--            <td class="px-6 py-4">-->
+<!--                I have been learning quite a bit of C++ using SFML for game development and using ImGui to-->
+<!--                mess around with.-->
+<!--                Although, it has been a little while since I have last done a project or anything with C++.-->
+<!--            </td>-->
+<!--        </tr>-->
+
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</div>-->

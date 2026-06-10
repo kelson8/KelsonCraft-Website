@@ -1,0 +1,11 @@
+{
+  "password-generator": {
+    "title": "Password generator",
+    "description": "Generate random passwords"
+  },
+
+  "get-ip": {
+    "title": "Get IP Address",
+    "description": "Display your current IP Address in the browser."
+  }
+}

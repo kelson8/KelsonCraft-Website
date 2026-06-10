@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/base-layout.astro';
+import {blueButtonClass} from "@/util/constants.ts";
+
+const minNumber = 1;
+const maxNumber = 200;
+
+export function getRandomInt(min: number, max: number): number {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+const testNumber = getRandomInt(1, 200);
+
+const generateRandomNumber = () => {
+    const randomNumber = getRandomInt(minNumber, maxNumber);
+    return randomNumber;
+}
+
+---
+
+<BaseLayout title="Random Number Generator">
+    <button class={blueButtonClass} onclick={generateRandomNumber().toString()}>Generate random number</button>
+    <p class="p-6"> Random number: {testNumber} </p>
+</BaseLayout>

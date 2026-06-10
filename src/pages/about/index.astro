@@ -1,0 +1,36 @@
+---
+import BaseLayout from "@/layouts/base-layout.astro";
+import {faCircleInfo} from "@fortawesome/free-solid-svg-icons";
+
+import { Icon } from 'astro-icon/components'
+import Link from "@/components/link.astro";
+
+// https://github.com/mgmka/font-awesome-astro
+// https://blog.verybadfrags.com/posts/astro-font-awesome/
+// https://www.astroicon.dev/getting-started/
+
+// I'm not exactly sure how to get Font Awesome working with Astro.
+// And these icons don't display with the h1 tag and be centered like the Font Awesome ones.
+
+// Guide for using Astro Icons
+// https://www.astroicon.dev/guides/customization/
+
+// I am now using the Material Symbols from Iconify
+// https://icon-sets.iconify.design/material-symbols/?icon-filter=info
+
+---
+
+<BaseLayout title="About">
+
+    <h1 class="text-4xl text-indigo-500 text-center text-bold p-6">About page
+        <!--<FontAwesomeIcon icon={faCircleInfo} />-->
+        <!--<i class="fa-solid fa-circle-info"></i>-->
+        <Icon name="material-symbols:info" />
+    </h1>
+
+    <!-- I added a custom link component -->
+    <!--<Link href="/">Home page</Link>-->
+
+    <p>Coding languages that I know: <Link href="/about/_coding-info">/about/coding-info</Link></p>
+
+</BaseLayout>

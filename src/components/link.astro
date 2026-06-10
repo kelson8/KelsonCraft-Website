@@ -1,0 +1,8 @@
+---
+import {blueLinkCss} from "@/util/constants.ts";
+const { href } = Astro.props;
+---
+
+<a href={href} class={blueLinkCss}>
+    <slot />
+</a>

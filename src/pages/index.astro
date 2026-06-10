@@ -1,0 +1,67 @@
+---
+import {HomePageLogo} from '../components/page_layouts/home-page-components';
+import BaseLayout from '../layouts/base-layout.astro';
+
+// I can place variables in the front matter which is what this is called between the '---'.
+
+const testObj = {
+    name: "MrPlow",
+    age: 32,
+};
+
+const testArr = ["admin", "username"];
+
+// I quickly got dark theme toggles working with shadcn
+---
+
+<BaseLayout title="Home">
+
+    <h1 class="text-4xl text-indigo-500 text-center text-bold">Home Page</h1>
+
+    <div>
+        <!--<MainContainer pageHeader="Home Page" pageIcon={websiteHomeIcon} headerColor="text-indigo-500">-->
+        <br>
+
+        <!-- Adapted from HomePageContents on the Next.js website. -->
+        <p>Welcome to the new KelsonCraft website, this website is
+            going
+            to be using
+            Astro with Typescript and Tailwind CSS. The old one was using Python Flask and Bootstrap
+            CSS.</p>
+        <br>
+
+        <p> I've started working on this new website on May 29, 2026 and plan to have it up and running
+            soon. <br>
+            Once I figure out how to replicate everything I was doing on the old website, which isn't
+            much
+            and is mostly just
+            video playing and basic authentication, this should be ready for the public and to replace the
+            main website. </p>
+
+        <hr></hr>
+
+        <!-- KelsonCraft logo, TODO Make this work in this astro file, it doesn't center proprely so I'll leave it in
+         home-page-components.tsx..-->
+        <!--<div className="p-6 flex justify-center">-->
+        <!--    <img src="/android-chrome-512x512.png" alt="KelsonCraft Logo 512x512" width={128}-->
+        <!--         height={128}></img>-->
+        <!--</div>-->
+        <HomePageLogo />
+
+
+        <!--<p>Test object values: </p>-->
+        <!--<ul class="list-disc">-->
+        <!--    <li>{testObj.name}</li>-->
+        <!--    <li>{testObj.age}</li>-->
+        <!--</ul>-->
+
+        {/* I can display values from an array like this. */}
+        <!--<p>{testArr.map((name) => <p>{name}</p>)}</p>-->
+    </div>
+</BaseLayout>
+
+<style>
+    h1 {
+        text-align: center;
+    }
+</style>

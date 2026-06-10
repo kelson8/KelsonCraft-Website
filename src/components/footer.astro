@@ -1,0 +1,24 @@
+---
+import {footerLinkCss, websiteCopyrightInfo, websiteSourceUrl} from "../util/constants.ts";
+import {blueLinkCss} from "@/util/constants.ts";
+
+// Footer came from my Next.js project here
+// https://github.com/kelson8/KelsonCraft-NextJS/blob/master/src/app/partials/footer.tsx
+
+---
+
+<div class="flex items-center px-4 py-2 rounded-full fixed md:bottom-4">
+    <!--<div class="flex  px-4 py-2 rounded-full fixed bottom-2 justify-center">-->
+    <div class="p-6">
+        {/* TODO Add other items to footer later and make this list look nicer. */}
+        <!--<p>Website source code: <a class={footerLinkCss} href={websiteSourceUrl}> GitHub </a></p>-->
+        <p>Website source code: <a class={blueLinkCss} href={websiteSourceUrl} target="_blank"> GitHub </a></p>
+    </div>
+    <br>
+</div>
+
+<div class="flex items-center px-4 py-2 rounded-full fixed bottom-2 p-6">
+    <footer class="text-center">{websiteCopyrightInfo}</footer>
+</div>
+
+

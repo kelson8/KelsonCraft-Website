@@ -1,0 +1,89 @@
+---
+// import { Footer } from '../components/footer';
+import Footer from '../components/footer.astro';
+import Navbar from '../components/navbar'
+import '../styles/global.css'
+import {containerPageClass, websiteName} from "../util/constants.ts";
+
+import {ThemeToggle} from "../components/theme-toggle.tsx"
+
+// The title gets set to the website name if it isn't set.
+const { title = websiteName } = Astro.props;
+
+// I got Markdown pages working in this.
+// https://tanggd.github.io/en/guides/markdown-content/
+
+// Although, I have disabled the coding-info.mdx Markdown page.
+
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+
+		<!-- https://ui.shadcn.com/docs/dark-mode/astro -->
+		<script is:inline>
+			const getThemePreference = () => {
+				if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+					return localStorage.getItem('theme');
+				}
+				return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+			};
+			const isDark = getThemePreference() === 'dark';
+			document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+
+			if (typeof localStorage !== 'undefined') {
+				const observer = new MutationObserver(() => {
+					const isDark = document.documentElement.classList.contains('dark');
+					localStorage.setItem('theme', isDark ? 'dark' : 'light');
+				});
+				observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+			}
+		</script>
+
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<!--<link rel="icon" type="image/svg+xml" href="/favicon.svg" />-->
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<!--<title>{Astro.props.title}</title>-->
+		<title>{title}</title>
+	</head>
+	<body>
+
+	{/* I can just reuse my React components for now! That's amazing */}
+	<Navbar client:load />
+		<main>
+			<!-- Don't enable the background styles here, shadcn takes care of that. -->
+			<!--<div class="p-4 sm:p-6 lg:p-8 dark:bg-gray-800 bg-white">-->
+			<div class="p-4 sm:p-6 lg:p-8">
+				<br></br>
+				<br></br>
+
+				 <div class={containerPageClass}>
+
+				<slot />
+				</div>
+			</div>
+		</main>
+
+	<!--<div class="flex items-center bg-blue-500 px-4 py-2 text-white hover:bg-blue-400 rounded-full fixed bottom-2 right-2">-->
+	<div class="flex items-center px-4 py-2  rounded-full fixed bottom-2 right-2">
+		<ThemeToggle client:load />
+	</div>
+
+	<Footer />
+
+
+
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>
