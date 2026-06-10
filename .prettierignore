@@ -1,0 +1,16 @@
+// Source - https://stackoverflow.com/a/70715829
+// Posted by Tamas Szoke, modified by community. See post 'Timeline' for change history
+// Retrieved 2026-06-10, License - CC BY-SA 4.0
+
+# Ignore everything recursively
+*
+
+# But not the .ts files
+!*.ts
+
+# Allow other files
+!*.astro
+!*.tsx
+
+# Check subdirectories too
+!*/

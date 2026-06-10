@@ -4,7 +4,7 @@ const currentYear = new Date().getFullYear();
 // Set the videl url path, such as '/video-player'.
 export const videoUrl: string = "/video-player";
 
-export const websiteName: string = "KelsonCraft"
+export const websiteName: string = "KelsonCraft";
 
 //------
 // Docker
@@ -24,7 +24,8 @@ export const authRoutesEnabled: boolean = process.env.AUTH_ROUTES === "true";
 export const testPagesEnabled: boolean = process.env.TEST_PAGES === "true";
 
 // Set the log file path here, currently it goes into the project src/logs folder
-export const logFile: string = process.cwd() + "/src/logs/kelsoncraft-nextjs.log"
+export const logFile: string =
+  process.cwd() + "/src/logs/kelsoncraft-nextjs.log";
 
 //------
 // Website page json files
@@ -61,8 +62,9 @@ export const wikiUrl: string = "https://wiki.kelsoncraft.net";
 // Footer urls and info
 //------
 export const websiteAuthor: string = "kelson8";
-export const websiteCopyrightInfo: string = `© Copyright ${currentYear} ${websiteAuthor} - KCNet/KelsonCraft AGPLv3`
-export const websiteSourceUrl: string = "https://github.com/kelson8/KelsonCraft-NextJS";
+export const websiteCopyrightInfo: string = `© Copyright ${currentYear} ${websiteAuthor} - KCNet/KelsonCraft AGPLv3`;
+export const websiteSourceUrl: string =
+  "https://github.com/kelson8/KelsonCraft-NextJS";
 
 //------
 // Main containers and div classes
@@ -98,10 +100,12 @@ export const blueButtonClass = `bg-blue-500 hover:bg-blue-700 text-white font-bo
 //------
 // Links
 //------
-export const blueLinkCss: string = "underline text-blue-600 hover:text-blue-800 visited:text-purple-600";
+export const blueLinkCss: string =
+  "underline text-blue-600 hover:text-blue-800 visited:text-purple-600";
 
 // This will mostly be used for the footer links to center them.
-export const footerLinkCss: string = blueLinkCss + " flex items-center justify-center";
+export const footerLinkCss: string =
+  blueLinkCss + " flex items-center justify-center";
 
 //------
 // Headers

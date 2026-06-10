@@ -1,9 +1,15 @@
 ---
 import BaseLayout from "@/layouts/base-layout.astro";
-import {faCircleInfo} from "@fortawesome/free-solid-svg-icons";
+import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 
-import { Icon } from 'astro-icon/components'
+import { Icon } from "astro-icon/components";
 import Link from "@/components/link.astro";
+
+import { DateUtil } from "@/util/date-util.ts";
+
+// https://expressive-code.com/key-features/code-component/
+// https://expressive-code.com/installation/
+import { Code } from "astro-expressive-code/components";
 
 // https://github.com/mgmka/font-awesome-astro
 // https://blog.verybadfrags.com/posts/astro-font-awesome/
@@ -18,19 +24,53 @@ import Link from "@/components/link.astro";
 // I am now using the Material Symbols from Iconify
 // https://icon-sets.iconify.design/material-symbols/?icon-filter=info
 
+// I can use code blocks now with this.
+const javaScriptCode1: string = `
+const logString = "Hello world!";
+console.log(logString);
+`;
+
+const CPPHelloWorld = `
+#include <iostream>
+
+int main() {
+    std::cout << "Hello World!";
+    return 0;
+}
+`;
+
+// Hmm, I wonder if I can render like with TSX? I don't think .astro files support that.
+// const displayCodeBlock = () => {
+//     return (
+//
+//     )
+// }
+
+// I can log the date with this, could be useful for a basic file logger or displaying on the screen.
+// let dateUtil = new DateUtil();
+// console.log(dateUtil.fullDate);
 ---
 
 <BaseLayout title="About">
+  <h1 class="text-4xl text-indigo-500 text-center text-bold p-6">
+    About page
+    <!--<FontAwesomeIcon icon={faCircleInfo} />-->
+    <!--<i class="fa-solid fa-circle-info"></i>-->
+    <Icon name="material-symbols:info" />
+  </h1>
 
-    <h1 class="text-4xl text-indigo-500 text-center text-bold p-6">About page
-        <!--<FontAwesomeIcon icon={faCircleInfo} />-->
-        <!--<i class="fa-solid fa-circle-info"></i>-->
-        <Icon name="material-symbols:info" />
-    </h1>
+  <!-- I added a custom link component -->
+  <!--<Link href="/">Home page</Link>-->
 
-    <!-- I added a custom link component -->
-    <!--<Link href="/">Home page</Link>-->
+  <p>
+    Coding languages that I know: <Link href="/about/coding-info"
+      >/about/coding-info</Link>
+  </p>
 
-    <p>Coding languages that I know: <Link href="/about/coding-info">/about/coding-info</Link></p>
+  {/* I didn't know I could make code block tags */}
+  <br />
+  <Code code={javaScriptCode1} lang="js" />
+  <!--<Code code="console.log('Hello world!')" lang="js" />-->
 
+  <!--<Code code={CPPHelloWorld} lang="cpp" />-->
 </BaseLayout>
