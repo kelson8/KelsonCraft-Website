@@ -6,10 +6,25 @@ import Link from "@/components/link.astro";
 
 // https://docs.astro.build/en/guides/routing/#dynamic-routes
 
+import VideoList from "../../json/videos.json"
+import {blueLinkCss} from "@/util/constants.ts";
+
+// This allows me to use map on this json file.
+const videoItems = Array.isArray(VideoList) ? VideoList : Object.values(VideoList);
 
 // TODO Make this auto generate from a list.
-videoName = "test.webm"
+let videoName = "test.webm"
 const videoUrl = "http://localhost:4321/videos/" + videoName;
+
+// Get the current path of the url, such as /videos/1
+const urlPath = Astro.url.pathname;
+
+interface VideoProps {
+    title: string,
+    description: string,
+    file: string,
+    restricted: boolean
+}
 
 ---
 
@@ -19,6 +34,26 @@ const videoUrl = "http://localhost:4321/videos/" + videoName;
         <!--<Icon name="material-symbols:info" />-->
     </h1>
 
-    <Link href={videoUrl}>{videoName}</Link>
+    <p class="p-4">
+        Welcome to the video page, I will disable this if I get close to my 1TB monthly bandwidth cap for my vps.
+        <br><br>
+        This page gets automatically generated from the videos.json file on the site.
+    </p>
+
+    <!--<Link href={videoUrl}>{videoName}</Link>-->
+
+    <ul class="list-disc">
+        {
+            videoItems.map((videoProps: VideoProps) => (
+                    <li>
+                        <a class={blueLinkCss} href={"/videos/" + videoProps.file}>{videoProps.title}</a>
+                        <!--<p>Description: {videoProps.description}</p>-->
+                        <!--<p>Url: {'/videos/' + videoProps.file}</p>-->
+                    </li>
+                    <br>
+            ))
+        }
+
+    </ul>
 
 </BaseLayout>
