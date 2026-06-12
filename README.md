@@ -8,6 +8,8 @@ Python Flask to Astro.
 
 Here is some screenshots of the website design, this isn't fully complete just yet.
 
+These need updated for the new Astro website.
+
 <details>
 <summary> Home Page </summary>
 <img src="screenshots/website-home.png?raw=true" alt="Home Page Screenshot">
@@ -51,19 +53,8 @@ First, install the dependencies
 
 **Adding videos**
 
-To add videos for the `src/app/video-player/[videoId]/page.tsx`, add them into the
-`videos` folder in the root of this repo.
-
-**Generating prisma schema**
-
-This below is required for the website to run now.
-
-To generate the prisma schema, run this command.
-* pnpm run generate:prisma-db
-
-To migrate the db (Sets up the sqlite DB)
-* pnpm dlx prisma migrate dev
-
+To add videos for the `src/pages/[...videos].astro`, add them into the
+`public/videos` folder in the root of this repo.
 
 ## Guides
 Here is a good video guide for Astro
@@ -136,10 +127,6 @@ I'm not sure how to set a relative path to these in the Markdown.
 * Font awesome icons - This is what I use for some icons on this website.
 * Tailwind CSS - This website is using Tailwind CSS instead of Bootstrap like the old website was.
 
-# License
-Since this project will mostly be used on web servers, I have decided to license this
-under the AGPLv3 license, the original website was licensed under GPLv3.
-
 ## 🧞 Commands
 
 All commands are run from the root of the project, from a terminal:
@@ -156,3 +143,7 @@ All commands are run from the root of the project, from a terminal:
 ## More info about Astro
 
 Feel free to check [Astro docs](https://docs.astro.build) or jump into our [Astro Discord server](https://astro.build/chat).
+
+# License
+Since this project will mostly be used on web servers, I have decided to license this
+under the AGPLv3 license, the original website was licensed under GPLv3.
