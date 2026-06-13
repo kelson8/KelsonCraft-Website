@@ -12,12 +12,8 @@ import {blueLinkCss} from "@/util/constants.ts";
 // This allows me to use map on this json file.
 const videoItems = Array.isArray(VideoList) ? VideoList : Object.values(VideoList);
 
-// TODO Make this auto generate from a list.
-let videoName = "test.webm"
-const videoUrl = "http://localhost:4321/videos/" + videoName;
-
 // Get the current path of the url, such as /videos/1
-const urlPath = Astro.url.pathname;
+// const urlPath = Astro.url.pathname;
 
 interface VideoProps {
     title: string,

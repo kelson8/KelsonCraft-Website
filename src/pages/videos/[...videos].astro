@@ -10,15 +10,17 @@ import {defaultPlyrProps} from "../../components/plyr-page-props.astro"
 
 // https://docs.astro.build/en/guides/routing/#dynamic-routes
 
-// const video = Astro.url.searchParams.get('video') || "";
+import VideoList from "../../json/videos.json";
 
 // https://stackoverflow.com/questions/73382984/how-can-i-access-the-url-query-parameters-from-an-astro-file-server-side
-// TODO Strip the video name from this, so if its https://
-const {url} = Astro.request;
+// No longer needed
+// const {url} = Astro.request;
+
+// const video = Astro.url.searchParams.get('video') || "";
 
 // This strips the domain, so the result can be "New_Music12/good/221 a2zaleczisi - slow down.webm"
 // TODO Make this give a 404 if the video doesn't exist, currently it shows a blank page with a play button.
-const hostDomain = "http://localhost:4321/videos-web"
+// const hostDomain = "http://localhost:4321/videos-web"
 // const videoName: string = url.split(hostDomain);
 
 // const fullVideoUrl: string = videoUrl + videoName.toString().replace(",", "");
@@ -26,26 +28,56 @@ const hostDomain = "http://localhost:4321/videos-web"
 // https://docs.astro.build/en/guides/routing/#dynamic-routes
 // const { video } = Astro.params;
 
-// TODO Pass the video from the videos page index.astro.
-// So if I have the tom clancy video, then pass the url to this instead of redirecting to it.
-
-// TODO Make this give an error if the path doesn't exist on the server.
-
 // const { videoUrl } = Astro.props;
 // I got this working!
 // I just had to replace /videos with nothing so it can display the video in plyr.
 const videoUrl = Astro.url.pathname.replace("/videos", "");
 // console.log(videoUrl.replace("/videos", ""));
 
+// Generate the paths
+export async function getStaticPaths() {
+    const videoItems = Array.isArray(VideoList) ? VideoList : Object.values(VideoList);
+
+    return videoItems.map((video) => {
+        return {
+            params: {videos: video.file},
+            props: {video}
+        };
+    });
+}
+
+// Get the data passed from getStaticPaths
+const {video} = Astro.props;
+const {title, description, file, restricted} = video;
+
+// Base domain for videos
+const hostDomain = import.meta.env.PUBLIC_VIDEO_HOST_DOMAIN;
+
+const fullVideoUrl = `${hostDomain}/${file}`;
 ---
 
-<BaseLayout title="Videos">
+<BaseLayout title={title}>
 
-    <!--<h1 class="text-4xl text-indigo-500 text-center text-bold p-6">{videoTitle}-->
-    {/* TODO Make this get the video title for the current video. */}
-    <!--<h1 class="text-4xl text-indigo-500 text-center text-bold p-6">-->
-        <!--<Icon name="material-symbols:info" />-->
-    <!--</h1>-->
+    {/* TODO Disable title and description if the video could not be loaded for some reason. */}
+    <h1 class="text-4xl text-indigo-500 text-center text-bold p-6">{title}
+    <!--<Icon name="material-symbols:info" />-->
+    </h1>
+
+    <div class="p-4 text-center max-w-xl mx-auto">
+
+        {/* TODO Possibly implement restricted videos in the future */}
+
+        {/*
+        <!--{restricted && (-->
+        <!--        <p class="mb-4 text-sm font-semibold text-red-600 bg-red-100 p-2 rounded border border-red-200">-->
+        <!--            This video is restricted.-->
+        <!--        </p>-->
+        <!--)}-->
+        */}
+
+        <p class="italic">{description}</p>
+    </div>
+
 
     <div class="p-4 text-center">
         {/* TODO Make this get the video description for the current video. */}
@@ -53,6 +85,11 @@ const videoUrl = Astro.url.pathname.replace("/videos", "");
         <!--<p> URL: {fullVideoUrl} </p>-->
     </div>
 
-    <VideoPlayer videoUrl={hostDomain + "/" + videoUrl} plyrControls={defaultPlyrProps} client:only="react"/>
+    {/* }
+    <VideoPlayer videoUrl={hostDomain + "/" + videoUrl} plyrControls={defaultPlyrProps} client:only="react"/>)*/}
+    <VideoPlayer
+            videoUrl={fullVideoUrl}
+            plyrControls={defaultPlyrProps}
+            client:only="react"/>
 
 </BaseLayout>

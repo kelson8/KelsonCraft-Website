@@ -14,12 +14,12 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-
+  
   // https://eastondev.com/blog/en/posts/dev/20251202-astro-ssr-guide/
-  output: "server", // Enable SSR mode
-  adapter: node({
-    mode: "standalone", // Standalone server mode
-  }),
+  // output: "server", // Enable SSR mode
+  // adapter: node({
+  //   mode: "standalone", // Standalone server mode
+  // }),
 
   // integrations: [react(), icon(), expressiveCode(), mdx()],
   integrations: [react(), icon(),

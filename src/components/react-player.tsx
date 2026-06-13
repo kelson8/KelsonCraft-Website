@@ -32,9 +32,7 @@ const defaultVolume: number = 0.2;
  * @returns The mime type of the video.
  */
 function mimeTypeFromUrl(url: string) {
-    if (!url) {
-        return;
-    }
+    if (!url) return;
     const ext = url.split('?')[0].split('.').pop()?.toLowerCase() ?? '';
     switch (ext) {
         case 'mp4':
@@ -55,32 +53,57 @@ export function VideoPlayer({videoUrl, poster, plyrControls, volume}: Props) {
 
     const type = mimeTypeFromUrl(videoUrl);
 
-    // Switching to React useState seems to have fixed this.
-    const [videoUrlValid, setVideoUrlValid] = React.useState(false);
+    // Track video state
+    const [status, setStatus] = React.useState<'loading' | 'valid' | 'error'>('loading');
 
+    // TODO Make this store the video volume set in local storage.
+    const [playerVolume, setPlayerVolume] = React.useState<number>(defaultVolume);
+    // const [playerVolume, setPlayerVolume] = React.useState([]);
 
     // Check if the path exists on the url
     // Now this displays an error if the video doesn't exist.
-    // TODO Fix the slight delay on the error code, it will run breifly even if the video is valid.
-    const response = axios.get(
-        videoUrl,
-        {
-            method: 'GET'
-        }
-    )
-        .then(res => {
-            setVideoUrlValid(true);
-            // console.log("Video url was valid");
-        })
-        .catch(err => {
-            setVideoUrlValid(false);
-            // console.log(err);
-        });
+    // Wrap the axios call in useEffect, so it only runs when the videoUrl changes.
+    React.useEffect(() => {
+        setStatus('loading');
 
-    // This works now! It has a slight delay and does display for like a second or two when the video exists.
-    if (!videoUrlValid) {
-        return <p>The video could not be played! Is the url correct?</p>
+        axios.get(
+            videoUrl,
+            {
+                method: 'GET'
+            }
+        )
+            .then(res => {
+                setStatus('valid');
+                // console.log("Video url was valid");
+            })
+            .catch(err => {
+                setStatus('error');
+                // console.log(err);
+            });
+    }, [videoUrl]);
+
+    // Handle the loading state
+    if (status === 'loading') {
+        return (
+            <div className="p-6 text-center text-gray-500">
+                <p className="animate-pulse">Loading video...</p>
+            </div>
+        );
     }
+
+    if (status === 'error') {
+        return (
+            <div className="p-6 text-center text-red-500 font-semibold">
+                <p>The video could not be played! Is the url correct?</p>
+            </div>
+        );
+    }
+
+    // Video volume handling
+    // TODO Figure out how to fix this.
+    // React.useEffect(() => {
+    //     localStorage.setItem("video-volume", playerVolume);
+    // }, [playerVolume]);
 
     const plyrProps: PlyrProps = {
         source: {
@@ -98,7 +121,9 @@ export function VideoPlayer({videoUrl, poster, plyrControls, volume}: Props) {
         },
         options: {
             // Set the volume, fall back to default if not set in the function.
-            volume: volume ?? defaultVolume,
+            // volume: volume ?? defaultVolume,
+            // TODO Make this work, it should store the user preference for the volume.
+            volume: playerVolume,
 
             // This works! I moved the plyrControls out of this function and now it can be modified per player.
             controls: plyrControls
