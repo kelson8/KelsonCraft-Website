@@ -26,8 +26,8 @@ import { Code } from "astro-expressive-code/components";
 
 // I can use code blocks now with this.
 const javaScriptCode1: string = `
-const logString = "Hello world!";
-console.log(logString);
+const welcomeMessage = "Welcome to the Kelsoncraft Website!";
+console.log(welcomeMessage);
 `;
 
 const CPPHelloWorld = `
@@ -74,8 +74,8 @@ int main() {
   </p>
 
   {/* I didn't know I could make code block tags */}
-  <!--<br />-->
-  <!--<Code code={javaScriptCode1} lang="ts" />-->
+  <br />
+  <Code code={javaScriptCode1} lang="ts" />
   <!--<Code code="console.log('Hello world!')" lang="js" />-->
 
   <!--<Code code={CPPHelloWorld} lang="cpp" />-->

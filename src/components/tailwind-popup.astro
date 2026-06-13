@@ -6,7 +6,9 @@ const { image, title, message } = Astro.props;
 ---
 
 <div class="mx-auto flex max-w-sm items-center gap-x-4 rounded-xl bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
-    <img class="size-12 shrink-0" src={image} alt="ChitChat Logo"/>
+    <!--<img class="size-12 shrink-0" src={image} alt="ChitChat Logo"/>-->
+    {/* I didn't know I could use custom icons like from Font Awesome in the Tailwind popup. */}
+    <i class="fa-solid fa-lock"></i>
     <div>
         <div class="text-xl font-medium text-black dark:text-white">{title}</div>
         <p class="text-gray-500 dark:text-gray-400">{message}</p>

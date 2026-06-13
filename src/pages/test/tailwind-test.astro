@@ -1,0 +1,103 @@
+---
+import BaseLayout from "@/layouts/base-layout.astro";
+import TailwindPopup from "@/components/tailwind-popup.astro";
+
+// https://blog.verybadfrags.com/posts/astro-font-awesome/
+// I switched to using Font awesome with basic html.
+
+// This is a way to toggle pages on/off, if they are disabled then give a 404.
+const enabled = import.meta.env.PUBLIC_TEST_PAGES_ENABLED === 'true';
+
+if(!enabled) {
+    return Astro.redirect('/disabled-page');
+    // To just give a 404, use this.
+    // return new Response(null, {status: 404});
+}
+
+---
+
+
+<BaseLayout title="Tailwind Testing">
+
+    <TailwindPopup title="Test" message="Test message box"/>
+
+
+
+    <br>
+
+    {/* These are now globally in base-layout.astro to be used */}
+    {/* https://fontawesome.com/search?ip=classic */}
+    <i class="fa-solid fa-lock"></i>
+
+    <p class="p-6">Flex testing</p>
+
+    <div class="flex flex-row border-2 border-black dark:border-gray-200">
+        {/* These flex boxes can have the values reversed */}
+    <!--<div class="flex flex-row-reverse">-->
+        {/* To position flex items vertically */}
+    <!--<div class="flex flex-col">-->
+    <!--<div class="flex flex-wrap">-->
+        <div class="basis-64 order-1">01</div>
+        <div class="basis-64 order-2">02</div>
+        <div class="basis-128 order-3">03</div>
+    </div>
+    <br>
+
+    <p class="italic"> Font test </p>
+
+    <br>
+    {/* Button that is cyan in light mode, and blue in dark mode. */}
+    <button
+            id="toggle-spinner"
+            class="bg-cyan-500 dark:bg-blue-500 hover:bg-blue-700 rounded-2xl py-2 px-2 dark:text-white">
+        Toggle spinner</button>
+
+
+    <br><br>
+    {/* https://dev.to/ruqaiya_beguwala/day-11-how-to-create-animated-spinners-using-tailwind-css-4d69 */}
+    <div
+            id="tailwind-spinner"
+            class="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full
+            animate-spin hidden"></div>
+
+
+    {/* https://www.material-tailwind.com/docs/html/checkbox */}
+    {/* TODO Setup material tailwind */}
+    {/* https://www.material-tailwind.com/docs/react/guide/astro */}
+    <div class="inline-flex items-center">
+        <label class="flex items-center cursor-pointer relative">
+            <input type="checkbox" checked class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-300 checked:bg-slate-800 checked:border-slate-800" id="check" />
+            <span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
+        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+      </svg>
+    </span>
+        </label>
+    </div>
+
+
+    {/* Basic script to toggle a spinner on/off, I mostly just used Javascript for this. */}
+    <script>
+        const spinnerToggleButton = document.getElementById("toggle-spinner");
+        const tailwindSpinner = document.getElementById("tailwind-spinner");
+
+        let tailwindSpinnerEnabled = false;
+
+        const toggleSpinner = () => {
+            if(tailwindSpinnerEnabled) {
+                tailwindSpinner?.classList.remove("hidden");
+            } else {
+                tailwindSpinner?.classList.add("hidden");
+            }
+        }
+
+        // https://docs.astro.build/en/guides/client-side-scripts/
+        spinnerToggleButton?.addEventListener('click', () => {
+            tailwindSpinnerEnabled = !tailwindSpinnerEnabled;
+            toggleSpinner();
+        })
+
+    </script>
+
+
+</BaseLayout>
