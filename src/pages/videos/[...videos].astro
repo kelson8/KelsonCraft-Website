@@ -18,31 +18,41 @@ const {url} = Astro.request;
 
 // This strips the domain, so the result can be "New_Music12/good/221 a2zaleczisi - slow down.webm"
 // TODO Make this give a 404 if the video doesn't exist, currently it shows a blank page with a play button.
-const hostDomain = "http://localhost:4321/videos"
-const videoName: string = url.split(hostDomain);
+const hostDomain = "http://localhost:4321/videos-web"
+// const videoName: string = url.split(hostDomain);
 
 // const fullVideoUrl: string = videoUrl + videoName.toString().replace(",", "");
 
 // https://docs.astro.build/en/guides/routing/#dynamic-routes
 // const { video } = Astro.params;
 
-const videoTitle = "";
-const fullVideoUrl = "";
+// TODO Pass the video from the videos page index.astro.
+// So if I have the tom clancy video, then pass the url to this instead of redirecting to it.
+
+// TODO Make this give an error if the path doesn't exist on the server.
+
+// const { videoUrl } = Astro.props;
+// I got this working!
+// I just had to replace /videos with nothing so it can display the video in plyr.
+const videoUrl = Astro.url.pathname.replace("/videos", "");
+// console.log(videoUrl.replace("/videos", ""));
 
 ---
 
 <BaseLayout title="Videos">
 
-    <h1 class="text-4xl text-indigo-500 text-center text-bold p-6">{videoTitle}
+    <!--<h1 class="text-4xl text-indigo-500 text-center text-bold p-6">{videoTitle}-->
+    {/* TODO Make this get the video title for the current video. */}
+    <!--<h1 class="text-4xl text-indigo-500 text-center text-bold p-6">-->
         <!--<Icon name="material-symbols:info" />-->
-    </h1>
+    <!--</h1>-->
 
     <div class="p-4 text-center">
-        <!-- TODO Make this get the video description for the current video. -->
+        {/* TODO Make this get the video description for the current video. */}
         <!--<p> Video Description </p>-->
         <!--<p> URL: {fullVideoUrl} </p>-->
     </div>
 
-    <VideoPlayer videoUrl={fullVideoUrl} plyrControls={defaultPlyrProps} client:only="react"/>
+    <VideoPlayer videoUrl={hostDomain + "/" + videoUrl} plyrControls={defaultPlyrProps} client:only="react"/>
 
 </BaseLayout>

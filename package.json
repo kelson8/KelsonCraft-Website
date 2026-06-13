@@ -37,6 +37,7 @@
     "astro-expressive-code": "^0.43.1",
     "astro-icon": "^1.1.5",
     "astro-navbar": "^2.4.0",
+    "axios": "^1.17.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^17.4.2",
