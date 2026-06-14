@@ -58,7 +58,7 @@ const { headers, rows, urlToggle, urlTableIndex } = Astro.props
                         // This fixes my projects page and other items I need to use with this table.
                         if(index === urlTableIndex && urlToggle) {
                             return (
-                                    <td class="px-6 py-4"><Link href={cell}>{cell}</Link></td>
+                                    <td class="px-6 py-4"><Link href={cell} openUrlInNewTab={true}>{cell}</Link></td>
                             )
                         }
 

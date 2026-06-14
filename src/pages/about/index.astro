@@ -10,6 +10,7 @@ import { DateUtil } from "@/util/date-util.ts";
 // https://expressive-code.com/key-features/code-component/
 // https://expressive-code.com/installation/
 import { Code } from "astro-expressive-code/components";
+import {h2HeaderClass, mainHeaderClass} from "@/util/constants.ts";
 
 // https://github.com/mgmka/font-awesome-astro
 // https://blog.verybadfrags.com/posts/astro-font-awesome/
@@ -70,8 +71,39 @@ int main() {
   <p>Welcome to the about page for the website. </p>
 
   <p>
-    Here is a list of coding languages that I know: <Link href="/about/coding-info"
-      >/about/coding-info</Link>
+    I will be hosting this site mostly in Python Flask. There will be a couple of items on the sidebar for info pages.
+    But I have not setup the sidebar with Tailwind CSS just yet.
+  </p>
+
+
+
+  <p>
+    Here is a list of coding languages that I know:
+    <Link href="/about/coding-info" openUrlInNewTab={false}>
+      /about/coding-info
+    </Link>
+  </p>
+
+  <br>
+  <h1 class={h2HeaderClass + " text-center"}>About me</h1>
+  <p class="col-md-8 fs-6">Here's a little bit about myself, my name is Kelson and my username is usually
+    kelson8.
+    I've always been passionate about tech especially computer hardware, Minecraft coding for spigot is what
+    originally got me into programming.
+  </p>
+
+  <p>
+    <br> I am pretty decent at coding with Python, and I enjoy messing around with FiveM lua scripts.
+    I know a lot of Java, lua, python, html, and css.
+    <br><br>
+
+    I've played around with making a basic
+    GTA 5 Script Hook V mod with C#.
+    <br>
+    I have messed with C++ quite a bit, and have made some mods <br>
+    for GTA 5, San Andreas and some other Grand Theft Auto games using it.
+    <br>
+
   </p>
 
   {/* I didn't know I could make code block tags */}
