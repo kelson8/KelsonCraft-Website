@@ -1,0 +1,63 @@
+---
+import BaseLayout from "@/layouts/base-layout.astro";
+import {faCircleInfo} from "@fortawesome/free-solid-svg-icons";
+
+import Link from "@/components/link.astro";
+import Table from "@/components/table.astro";
+
+// https://github.com/mgmka/font-awesome-astro
+// https://blog.verybadfrags.com/posts/astro-font-awesome/
+// https://www.astroicon.dev/getting-started/
+
+// I'm not exactly sure how to get Font Awesome working with Astro.
+// And these icons don't display with the h1 tag and be centered like the Font Awesome ones.
+
+// Guide for using Astro Icons
+// https://www.astroicon.dev/guides/customization/
+
+// I am now using the Material Symbols from Iconify
+// https://icon-sets.iconify.design/material-symbols/?icon-filter=info
+
+const tableHeaders = ["Project", "Description", "Url"];
+
+// TODO Make these read from a JSON file later.
+const tableRows = [
+    ["-------Websites-------"],
+    ["Kelsoncraft Website", "The new Kelsoncraft website created with Astro and Typescript", "https://github.com/kelson8/KelsonCraft-Website"],
+    ["KCNet Blog", "This is the Kelsoncraft blog created with Hugo", "https://github.com/kelson8/kcnet-blog"],
+    ["Kelsoncraft NextJS Test", "This NextJS project was going to replace the website, but I am able to get stuff done easier with Astro.", "https://github.com/kelson8/KelsonCraft-NextJS"],
+    ["Kelsoncraft Flask website", "This was the previous website code created with Python Flask", "https://github.com/kelson8/FlaskWeb"],
+
+    ["-------Minecraft-------"],
+    ["KBP", "My old Kelsoncraft Spigot plugin for Minecraft, I don't really work on it anymore", "https://github.com/kelson8/KBP"],
+    ["KCNet-MCMod", "My testing mod for Minecraft, it doesn't really do much.", "https://github.com/kelson8/KCNet-MCMod"],
+
+    ["-------GTA5-------"],
+    ["KCTrainerV", "GTA 5 trainer created in C++, uses some of Menyoo, and Chaos mod code.", "https://github.com/kelson8/KCTrainerV"],
+    ["kc_menu", "FiveM testing menu using ox_lib", "https://github.com/kelson8/kc_menu"],
+    ["Custom FiveM Scripts", "These are some custom FiveM scripts that I created.", "https://github.com/kelson8/fivem-scripts"],
+    ["Venomous Freemode", "This is some scripts that I was messing around with, these are licensed under AGPLv3 and was not originally created by me.", "https://github.com/kelson8/venomous-freemode"],
+    [["-------Misc Scripts-------"],],
+    ["Raspberry Pi Scripts", "Misc random Raspberry Pi scripts, mostly python but some C++ also.", "https://github.com/kelson8/rpi-scripts"],
+    ["-------ReVC and librw-------"],
+    ["KCNet-ReVC-Patches", "My reVC patches for the custom ImGui mod menu and other items, requires a copy of the reVC code.", "https://github.com/kelson8/KCNet-ReVC-Patches"],
+    ["librw", "I added ImGui support into librw, this can be used for the reVC and re3 ports.", "https://github.com/kelson8/librw"],
+    ["GTA4 Connected Scripts", "This is a list of scripts that I made for GTA Connected, a lot of it is for GTA 4.", "https://github.com/kelson8/gtaiv-connected-scripts"],
+
+];
+---
+
+<BaseLayout title="Projects">
+    <h1 class="text-4xl text-indigo-500 text-center text-bold p-6">
+        Projects page
+        <i class="fa-solid fa-table-cells-row-lock dark:text-white text-black"></i>
+    </h1>
+
+    <p class="p-6">This will contain a list of projects that I have worked on and that are public on
+        my GitHub, I have made quite a few smaller projects and most of them are open source.
+        <br>
+        I tend to license most of my projects under GPLv3, or MIT but the website is licensed under
+        AGPLv3.</p>
+
+    <Table headers={tableHeaders} rows={tableRows} urlToggle={true} urlTableIndex={2}/>
+</BaseLayout>

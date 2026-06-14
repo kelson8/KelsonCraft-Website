@@ -1,8 +1,13 @@
 ---
 import {blueLinkCss} from "@/util/constants.ts";
 const { href } = Astro.props;
+
+// TODO Make this able to toggle if the _blank attribute is enabled.
+// That should be easy by adding an optional prop.
+// Look into the projects page for that.
+
 ---
 
-<a href={href} class={blueLinkCss}>
+<a href={href} class={blueLinkCss} target="_blank" rel="noopener noreferrer">
     <slot />
 </a>

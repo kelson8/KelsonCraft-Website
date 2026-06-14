@@ -3,12 +3,19 @@
 
 // https://www.jorqensen.dev/blog/2024/writing-components-with-astro-and-tailwind
 
+
+import Link from "@/components/link.astro";
 interface Props {
     headers: string[];
     rows: string[][];
+    // This toggles the blue url link for the specified table section.
+    urlToggle?: boolean;
+    // The spot on the table that the url is, such as table section 2.
+    // Look into src/projects/index.astro for the usage of this.
+    urlTableIndex?: number;
 }
 
-const { headers, rows } = Astro.props
+const { headers, rows, urlToggle, urlTableIndex } = Astro.props
 
 ---
 
@@ -45,6 +52,16 @@ const { headers, rows } = Astro.props
                                     </th>
                             );
                         }
+
+
+                        // I modified this to only set the specific table section as an 'a' tag.
+                        // This fixes my projects page and other items I need to use with this table.
+                        if(index === urlTableIndex && urlToggle) {
+                            return (
+                                    <td class="px-6 py-4"><Link href={cell}>{cell}</Link></td>
+                            )
+                        }
+
                         // Renders standard table cells for the rest
             return <td class="px-6 py-4">{cell}</td>;
                     })}
