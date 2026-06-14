@@ -45,8 +45,9 @@ services:
       ports:
         # Static site (Nginx on port 80 in the container)
         # TODO Change this when deploying onto the VPS, make this use reverse proxy.
-        #      - "127.0.0.1:8058:80"
-        - "8058:80"
+        # Previous port: 8058, not sure why I changed this.
+        #      - "127.0.0.1:3000:80"
+        - "3000:80"
         # Dynamic site (Node.js on port 4321 in the container)
         # - "80:4321"
       restart: unless-stopped
