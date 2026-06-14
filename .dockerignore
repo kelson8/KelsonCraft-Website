@@ -1,0 +1,27 @@
+node_modules/
+.next/
+.gitea/
+.github/
+.idea/
+
+dev.Dockerfile
+dev.Dockerfile.bak
+docker-compose.yml
+LICENSE
+nextjs-new.tar
+prod.Dockerfile
+README.md
+
+# https://deployn.de/en/blog/astrojs-docker/
+.DS_Store
+node_modules
+npm-debug.log
+dist
+.astro
+.env*
+*.env
+.git
+.vscode
+Dockerfile*
+docker-compose*
+compose*

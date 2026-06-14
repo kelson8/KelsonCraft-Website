@@ -1,0 +1,63 @@
+services:
+
+  # TODO Fix this for working with the website using dev mode in Docker.
+#  kelsoncraft-astro:
+#    # Run the dev server for now, switch to prod.Dockerfile when deploying onto the VPS.
+#    # TODO Switch to prod.Dockerfile when deploying onto the VPS.
+#    build:
+#      context: .
+#      dockerfile: dev.Dockerfile
+##      dockerfile: prod.Dockerfile
+#    container_name: kelsoncraft-astro
+#    networks:
+#      - testing
+#    volumes:
+#      # - ./:/data
+#      - ./:/usr/src/app:cached
+#      # Don't mount node_modules from the host.
+#      - /usr/src/app/node_modules
+#      # TODO Change this download directory for the Astro server.
+#      #      - /mnt/docker_volume/flask_downloads:/downloads
+#      - /etc/localtime:/etc/localtime:ro
+#    ports:
+#      # TODO Change this when deploying onto the VPS.
+#      #      - "127.0.0.1:3000:3000"
+#      - "4321:4321"
+#    environment:
+#      # Disable this when deploying onto the VPS.
+#      - NODE_ENV=development
+#    restart: unless-stopped
+#    # For now, this just runs the dev server for Astro.
+#    command: ["pnpm", "dev", "--hostname", "0.0.0.0"]
+
+
+  # Build the Nginx website for Astro
+  # TODO Fix this to work, currently it redirects if I go to /about, it'll go to https://ip/about instead of http://ip:8058/about
+  kelsoncraft-website:
+      build:
+        context: .
+        dockerfile: prod.Dockerfile
+      image: kelsoncraft-website:latest
+      container_name: kelsoncraft-website
+      ports:
+        # Static site (Nginx on port 80 in the container)
+        # TODO Change this when deploying onto the VPS, make this use reverse proxy.
+        #      - "127.0.0.1:8058:80"
+        - "8058:80"
+        # Dynamic site (Node.js on port 4321 in the container)
+        # - "80:4321"
+      restart: unless-stopped
+      networks:
+        - testing
+
+  # For caching logins and other stuff.
+  # Disabled for Astro website
+#  kelsoncraft-redis:
+#    container_name: kelsoncraft-redis
+#    image: redis:latest
+#    ports:
+#      - "6379:6379"
+
+networks:
+  testing:
+    external: true

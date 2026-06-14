@@ -17,8 +17,9 @@ These need updated for the new Astro website.
 
 <details>
 <summary> About page </summary>
-<img src="screenshots/website-about1.png?raw=true" alt="About Page Screenshot1">
-<img src="screenshots/website-about2.png?raw=true" alt="About Page Screenshot2">
+<img src="screenshots/website-about.png?raw=true" alt="About Page Screenshot1">
+<img src="screenshots/website-about-coding.png?raw=true" alt="About Page Screenshot1">
+
 </details>
 
 <details>
@@ -37,6 +38,8 @@ These need updated for the new Astro website.
 **Running webserver**
 
 I tried to get this working with docker, but couldn't figure it out.
+
+I am working on getting Docker support enabled for the website, so far it is broken though.
 
 You will need Node.js 24, pnpm, and pm2 installed for this to work
 
@@ -64,11 +67,11 @@ I plan on migrating my Next.js project to Astro.
 
 You can use either `.md` for Markdown pages, or `.astro` for astro pages with HTML and optional TypeScript at the top.
 
-To make a page not show up in the build, prefix it with an `_` like `_about.astro`
+To make a page not show up in the build, prefix it with an `_` like `_about.astro` 
+this is only required if the file is in the `src/pages` folder.
 
 Here is a guide on migrating from Next.js to Astro
 * https://docs.astro.build/en/guides/migrate-to-astro/from-nextjs/
-
 
 ### Files
 These are currently not implemented for the Astro version of this website.
@@ -81,12 +84,12 @@ on some of the pages, and also
 the `videos.json` which displays the videos using `src/components/read-json-files.tsx`.
 
 ### Adding videos to the site
-The videos are currently not implemented for the Astro version of this website.
+I have mostly gotten the videos to work on this website, it still needs a bit of work to be complete and ready.
 
 To add videos to this site, first add them into the `src/json/videos.json` file like this
 it requires an id, title, description, file_name and if the video is restricted.
 
-From `videos.json`
+From `src/json/videos.json`
 ```json
 {
   "tom_clancy_wildlands_glitch1": {
@@ -99,18 +102,35 @@ From `videos.json`
 ```
 
 
-Then, you can add the video into the `/videos` folder in the root of this repo.
+Then, you can add the video into the `/public/videos-web` folder in the root of this repo.
+
+### Useful files
+Here is a list of useful files for the website
+
+**Navbar and footer**
+- [navbar.astro](https://github.com/kelson8/KelsonCraft-Website/blob/master/src/components/navbar.astro)
+- [footer.astro](https://github.com/kelson8/KelsonCraft-Website/blob/master/src/components/footer.astro)
+
+**Plyr Video player**
+- [plyr-page-props.astro](https://github.com/kelson8/KelsonCraft-Website/blob/master/src/components/plyr-page-props.astro)
+- [react-player.tsx](https://github.com/kelson8/KelsonCraft-Website/blob/master/src/components/react-player.tsx)
+
+**Themes and tailwind**
+- [link.astro](https://github.com/kelson8/KelsonCraft-Website/blob/master/src/components/link.astro)
+- [home-page-components.tsx](https://github.com/kelson8/KelsonCraft-Website/blob/master/src/components/page_layouts/home-page-components.tsx)
+- [table.astro](https://github.com/kelson8/KelsonCraft-Website/blob/master/src/components/table.astro)
+- [tailwind-popup.astro](https://github.com/kelson8/KelsonCraft-Website/blob/master/src/components/tailwind-popup.astro)
+- [theme-toggle.tsx](https://github.com/kelson8/KelsonCraft-Website/blob/master/src/components/theme-toggle.tsx)
 
 ## Useful links
 
 These links below are useful for the website.
 
-| Title                         | URL                                                   |
-|-------------------------------|-------------------------------------------------------|
-| Font awesome icon list        | https://fontawesome.com/search?p=8&ic=free-collection |
-| MUI React checkboxes          | https://mui.com/material-ui/react-checkbox/           |
-| NextJS Form guides            | https://nextjs.org/docs/app/guides/forms              |
-| BetterAuth Installation Guide | https://better-auth.com/docs/installation             |
+| Title                  | URL                                                   |
+|------------------------|-------------------------------------------------------|
+| Font awesome icon list | https://fontawesome.com/search?p=8&ic=free-collection |
+| MUI React checkboxes   | https://mui.com/material-ui/react-checkbox/           |
+| Astro Form guides      | https://docs.astro.build/en/recipes/build-forms/      |
 
 ### Website links
 
@@ -127,13 +147,13 @@ I'm not sure how to set a relative path to these in the Markdown.
 * Font awesome icons - This is what I use for some icons on this website.
 * Tailwind CSS - This website is using Tailwind CSS instead of Bootstrap like the old website was.
 
-## 🧞 Commands
+## Commands
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
+| Command                | Action                                           |
+|:-----------------------|:-------------------------------------------------|
+| `pnpm install`         | Installs dependencies                            |
 | `pnpm dev`             | Starts local dev server at `localhost:4321`      |
 | `pnpm build`           | Build your production site to `./dist/`          |
 | `pnpm preview`         | Preview your build locally, before deploying     |
@@ -142,7 +162,7 @@ All commands are run from the root of the project, from a terminal:
 
 ## More info about Astro
 
-Feel free to check [Astro docs](https://docs.astro.build) or jump into our [Astro Discord server](https://astro.build/chat).
+Feel free to check [Astro docs](https://docs.astro.build) or jump into the [Astro Discord server](https://astro.build/chat).
 
 # License
 Since this project will mostly be used on web servers, I have decided to license this
