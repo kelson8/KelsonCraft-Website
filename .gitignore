@@ -38,13 +38,17 @@ node_modules/
 # misc
 .DS_Store
 *.pem
-
+.todo/
 
 # logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+# Just exclude all log files.
+*.log
+
 
 # Environments
 .env

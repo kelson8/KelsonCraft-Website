@@ -39,6 +39,9 @@ services:
         dockerfile: prod.Dockerfile
       image: kelsoncraft-website:latest
       container_name: kelsoncraft-website
+      volumes:
+        # This stores the logs from the container.
+        - ./logs:/var/log/nginx
       ports:
         # Static site (Nginx on port 80 in the container)
         # TODO Change this when deploying onto the VPS, make this use reverse proxy.
