@@ -26,6 +26,10 @@ COPY . .
 # Not required for the Astro web server, unless I decide to implement logins and switch to SSR (Server Side Rendering)
 # RUN pnpm run generate:prisma-db
 
+# Test for setting the video host domain env variable
+ARG PUBLIC_VIDEO_HOST_DOMAIN
+ENV PUBLIC_VIDEO_HOST_DOMAIN=${PUBLIC_VIDEO_HOST_DOMAIN}
+
 RUN pnpm build
 
 # Runner with nginx
@@ -33,6 +37,11 @@ RUN pnpm build
 
 # TODO Make this run as non root user if possible.
 FROM nginx:alpine AS runner
+
+# Setup the timezone
+# https://www.programmersought.com/article/72575663274/
+RUN apk add -U tzdata && cp /usr/share/zoneinfo/America/New_York /etc/localtime && apk del tzdata
+
 COPY ./data/nginx /etc/nginx
 
 COPY --from=build /usr/src/app/dist /var/www/html

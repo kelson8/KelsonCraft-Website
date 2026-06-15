@@ -12,6 +12,26 @@ nextjs-new.tar
 prod.Dockerfile
 README.md
 
+# All mp4 files, these should just be bind mounted.
+public/videos-web/*.mp4
+
+# Taken from Gitignore.
+# Audio/video
+*.mp3
+*.mp4
+*.webm
+*.m4a
+*.mov
+*.avi
+
+# Compressed
+*.tar
+*.tar.gz
+*.zip
+*.7z
+*.rar
+#
+
 # https://deployn.de/en/blog/astrojs-docker/
 .DS_Store
 node_modules

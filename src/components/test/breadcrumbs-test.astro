@@ -1,0 +1,33 @@
+---
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator, BreadcrumbEllipsis } from "@/components/starwind/breadcrumb";
+
+interface Props {
+    item1: string;
+    categoryHref: string;
+    category?: string;
+    product?: string;
+}
+
+const { item1, category, categoryHref, product } = Astro.props
+
+// TODO Make this re-useable.
+
+---
+
+<Breadcrumb>
+    <BreadcrumbList>
+        <BreadcrumbItem>
+            <BreadcrumbLink href="/">{item1}</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbEllipsis />
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+            <BreadcrumbLink href={categoryHref}>{category}</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+            <BreadcrumbPage>{product}</BreadcrumbPage>
+        </BreadcrumbItem>
+    </BreadcrumbList>
+</Breadcrumb>

@@ -1,0 +1,34 @@
+---
+// import {
+//     Field,
+//     FieldDescription,
+//     FieldLabel,
+// } from "@/components/ui/field"
+// import { Input } from "@/components/ui/input"
+
+import { Input } from "@/components/starwind/input";
+
+// https://ui.shadcn.com/docs/components/radix/input
+
+interface Props {
+    title?: string;
+    placeholder: string;
+    description?: string;
+}
+
+const { title, placeholder, description } = Astro.props;
+
+// https://starwind.dev/docs/components/input/
+
+---
+
+    <Input placeholder={placeholder} />
+
+
+<!--<Field>-->
+<!--    <FieldLabel htmlFor="input-demo-api-key">{title}</FieldLabel>-->
+<!--    <Input id="input-demo-api-key" type="password" placeholder={placeholder} />-->
+<!--    <FieldDescription>-->
+<!--        {description}-->
+<!--    </FieldDescription>-->
+<!--</Field>-->

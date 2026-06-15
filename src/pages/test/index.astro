@@ -1,6 +1,12 @@
 ---
 import BaseLayout from "@/layouts/base-layout.astro";
 import Link from "@/components/link.astro";
+
+import InputTest from "@/components/test/input-test.astro"
+import CardTest from "@/components/test/card-test.astro"
+import BreadCrumbsTest from "@/components/test/breadcrumbs-test.astro"
+import {h2HeaderClass, mainHeaderClass} from "@/util/constants.ts";
+import Button from "@/components/starwind/button/Button.astro";
 ---
 <BaseLayout title="Test">
 
@@ -9,5 +15,21 @@ import Link from "@/components/link.astro";
     <ul class="list-disc">
         <li>Tailwind test: <Link href="/test/tailwind-test">/test/tailwind-test</Link></li>
     </ul>
+
+    <br>
+    <h1 class={h2HeaderClass + " text-center"}> Misc Starwind UI testing</h1>
+    <br><br>
+    <!--<InputTest title="Test" placeholder="password" description="Enter the password."/>-->
+    <!--<AppSidebar />-->
+    <!--<CardTest title="Project #1" description="Testing project" content="This is a demo project."/>-->
+
+
+    <!--<Button>Hello World</Button>-->
+
+    <!--<InputTest placeholder="Enter the password" />-->
+
+    <!--<BreadCrumbsTest item1="Home" categoryHref="/test/tailwind-test" category="TailwindTest" />-->
+
+
 
 </BaseLayout>

@@ -1,0 +1,259 @@
+---
+import BellIcon from "@tabler/icons/outline/bell.svg";
+import BookOpenIcon from "@tabler/icons/outline/book.svg";
+import ChartPieIcon from "@tabler/icons/outline/chart-pie.svg";
+import ChevronRightIcon from "@tabler/icons/outline/chevron-right.svg";
+import ChevronUpIcon from "@tabler/icons/outline/chevron-up.svg";
+import CodeIcon from "@tabler/icons/outline/code.svg";
+import CreditCardIcon from "@tabler/icons/outline/credit-card.svg";
+import FrameIcon from "@tabler/icons/outline/frame.svg";
+import LogoutIcon from "@tabler/icons/outline/logout.svg";
+import MapIcon from "@tabler/icons/outline/map.svg";
+import BotIcon from "@tabler/icons/outline/robot.svg";
+import BadgeCheckIcon from "@tabler/icons/outline/rosette-discount-check.svg";
+import Settings2Icon from "@tabler/icons/outline/settings-2.svg";
+import SparklesIcon from "@tabler/icons/outline/sparkles.svg";
+import TerminalIcon from "@tabler/icons/outline/terminal-2.svg";
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/starwind/avatar";
+import {
+    Collapsible,
+    CollapsibleContent,
+    CollapsibleTrigger,
+} from "@/components/starwind/collapsible";
+import {
+    Dropdown,
+    DropdownContent,
+    DropdownItem,
+    DropdownLabel,
+    DropdownSeparator,
+    DropdownTrigger,
+} from "@/components/starwind/dropdown";
+import {
+    Sidebar,
+    SidebarContent,
+    SidebarFooter,
+    SidebarGroup,
+    SidebarGroupContent,
+    SidebarGroupLabel,
+    SidebarHeader,
+    SidebarMenu,
+    SidebarMenuButton,
+    SidebarMenuItem,
+    SidebarMenuSub,
+    SidebarMenuSubButton,
+    SidebarMenuSubItem,
+    SidebarProvider,
+    SidebarRail,
+    SidebarSeparator,
+    SidebarTrigger,
+} from "@/components/starwind/sidebar";
+
+// https://starwind.dev/docs/components/sidebar/
+
+const navMain = [
+    {
+        title: "Playground",
+        url: "#",
+        icon: TerminalIcon,
+        isActive: true,
+        items: [
+            { title: "History", url: "#" },
+            { title: "Starred", url: "#" },
+            { title: "Settings", url: "#" },
+        ],
+    },
+    {
+        title: "Models",
+        url: "#",
+        icon: BotIcon,
+        items: [
+            { title: "Genesis", url: "#" },
+            { title: "Explorer", url: "#" },
+            { title: "Quantum", url: "#" },
+        ],
+    },
+    {
+        title: "Documentation",
+        url: "#",
+        icon: BookOpenIcon,
+        items: [
+            { title: "Introduction", url: "#" },
+            { title: "Get Started", url: "#" },
+            { title: "Tutorials", url: "#" },
+            { title: "Changelog", url: "#" },
+        ],
+    },
+    {
+        title: "Settings",
+        url: "#",
+        icon: Settings2Icon,
+        items: [
+            { title: "General", url: "#" },
+            { title: "Team", url: "#" },
+            { title: "Billing", url: "#" },
+            { title: "Limits", url: "#" },
+        ],
+    },
+];
+
+const projects = [
+    { name: "Design Engineering", url: "#", icon: FrameIcon },
+    { name: "Sales & Marketing", url: "#", icon: ChartPieIcon },
+    { name: "Travel", url: "#", icon: MapIcon },
+];
+---
+
+<SidebarProvider defaultOpen={false} keyboardShortcut="b">
+    <Sidebar collapsible="icon">
+        <SidebarHeader>
+            <SidebarMenu>
+                <SidebarMenuItem>
+                    <SidebarMenuButton size="lg">
+                        <div
+                                class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-10 items-center justify-center rounded-lg"
+                        >
+                            <CodeIcon class="size-5" />
+                        </div>
+                        <div class="grid flex-1 text-left text-sm leading-tight">
+                            <span class="truncate font-semibold">Starwind UI</span>
+                            <span class="text-sidebar-foreground/70 truncate text-xs">Enterprise</span>
+                        </div>
+                    </SidebarMenuButton>
+                </SidebarMenuItem>
+            </SidebarMenu>
+        </SidebarHeader>
+
+        <SidebarSeparator />
+
+        <SidebarContent>
+            <SidebarGroup>
+                <SidebarGroupLabel>Platform</SidebarGroupLabel>
+                <SidebarGroupContent>
+                    <SidebarMenu>
+                        {
+                            navMain.map((item) => (
+                                    <Collapsible defaultOpen={item.isActive} class="group/collapsible">
+                                        <SidebarMenuItem>
+                                            <CollapsibleTrigger asChild>
+                                                <SidebarMenuButton tooltip={item.title}>
+                                                    <item.icon />
+                                                    <span>{item.title}</span>
+                                                    <ChevronRightIcon class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                                                </SidebarMenuButton>
+                                            </CollapsibleTrigger>
+                                            {item.items && (
+                                                    <CollapsibleContent>
+                                                        <SidebarMenuSub>
+                                                            {item.items.map((subItem) => (
+                                                                    <SidebarMenuSubItem>
+                                                                        <SidebarMenuSubButton href={subItem.url}>
+                                                                            <span>{subItem.title}</span>
+                                                                        </SidebarMenuSubButton>
+                                                                    </SidebarMenuSubItem>
+                                                            ))}
+                                                        </SidebarMenuSub>
+                                                    </CollapsibleContent>
+                                            )}
+                                        </SidebarMenuItem>
+                                    </Collapsible>
+                            ))
+                        }
+                    </SidebarMenu>
+                </SidebarGroupContent>
+            </SidebarGroup>
+
+            <SidebarGroup class="group-data-[collapsible=icon]:hidden">
+                <SidebarGroupLabel>Projects</SidebarGroupLabel>
+                <SidebarGroupContent>
+                    <SidebarMenu>
+                        {
+                            projects.map((project) => (
+                                    <SidebarMenuItem>
+                                        <SidebarMenuButton href={project.url} tooltip={project.name}>
+                                            <project.icon />
+                                            <span>{project.name}</span>
+                                        </SidebarMenuButton>
+                                    </SidebarMenuItem>
+                            ))
+                        }
+                    </SidebarMenu>
+                </SidebarGroupContent>
+            </SidebarGroup>
+        </SidebarContent>
+
+        <!--<SidebarFooter>-->
+        <!--    <SidebarMenu>-->
+        <!--        <SidebarMenuItem>-->
+        <!--            <Dropdown>-->
+        <!--                <DropdownTrigger asChild>-->
+        <!--                    <SidebarMenuButton size="lg">-->
+        <!--                        <Avatar class="size-10 shrink-0 rounded-lg">-->
+        <!--                            <AvatarImage src="https://github.com/boston343.png" alt="boston343" />-->
+        <!--                            <AvatarFallback class="rounded-lg">B3</AvatarFallback>-->
+        <!--                        </Avatar>-->
+        <!--                        <div class="grid flex-1 text-left text-sm leading-tight">-->
+        <!--                            <span class="truncate font-semibold">Boston343</span>-->
+        <!--                            <span class="text-sidebar-foreground/70 truncate text-xs">@boston343</span>-->
+        <!--                        </div>-->
+        <!--                        <ChevronUpIcon class="ml-auto size-4" />-->
+        <!--                    </SidebarMenuButton>-->
+        <!--                </DropdownTrigger>-->
+        <!--                <DropdownContent class="w-full min-w-48 rounded-lg" side="top">-->
+        <!--                    <DropdownLabel class="p-0 font-normal">-->
+        <!--                        <div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">-->
+        <!--                            <Avatar class="size-8 rounded-lg">-->
+        <!--                                <AvatarImage src="https://github.com/boston343.png" alt="boston343" />-->
+        <!--                                <AvatarFallback class="rounded-lg">B3</AvatarFallback>-->
+        <!--                            </Avatar>-->
+        <!--                            <div class="grid flex-1 text-left text-sm leading-tight">-->
+        <!--                                <span class="truncate font-semibold">boston343</span>-->
+        <!--                                <span class="text-muted-foreground truncate text-xs">@boston343</span>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                    </DropdownLabel>-->
+        <!--                    <DropdownSeparator />-->
+        <!--                    <DropdownItem as="a" href="#">-->
+        <!--                        <SparklesIcon class="mr-2 size-4" />-->
+        <!--                        Upgrade to Pro-->
+        <!--                    </DropdownItem>-->
+        <!--                    <DropdownSeparator />-->
+        <!--                    <DropdownItem as="a" href="#">-->
+        <!--                        <BadgeCheckIcon class="mr-2 size-4" />-->
+        <!--                        Account-->
+        <!--                    </DropdownItem>-->
+        <!--                    <DropdownItem as="a" href="#">-->
+        <!--                        <CreditCardIcon class="mr-2 size-4" />-->
+        <!--                        Billing-->
+        <!--                    </DropdownItem>-->
+        <!--                    <DropdownItem as="a" href="#">-->
+        <!--                        <BellIcon class="mr-2 size-4" />-->
+        <!--                        Notifications-->
+        <!--                    </DropdownItem>-->
+        <!--                    <DropdownSeparator />-->
+        <!--                    <DropdownItem as="a" href="#">-->
+        <!--                        <LogoutIcon class="mr-2 size-4" />-->
+        <!--                        Log out-->
+        <!--                    </DropdownItem>-->
+        <!--                </DropdownContent>-->
+        <!--            </Dropdown>-->
+        <!--        </SidebarMenuItem>-->
+        <!--    </SidebarMenu>-->
+        <!--</SidebarFooter>-->
+
+        <SidebarRail />
+    </Sidebar>
+
+    <main class="bg-background flex flex-1 flex-col">
+        <header class="flex h-12 shrink-0 items-center gap-2 border-b px-4">
+            <SidebarTrigger />
+            <span class="text-muted-foreground text-sm">Main Content</span>
+        </header>
+        <div class="flex-1 p-6">
+            <p class="text-muted-foreground text-sm">
+                Use <kbd class="bg-muted rounded px-1.5 py-0.5 text-xs font-medium">Ctrl+B</kbd> to toggle
+                the sidebar <br /> after clicking in this window.
+            </p>
+        </div>
+    </main>
+</SidebarProvider>
