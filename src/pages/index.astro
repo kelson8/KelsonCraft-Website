@@ -1,15 +1,11 @@
 ---
 import {HomePageLogo} from '../components/page_layouts/home-page-components';
 import BaseLayout from '../layouts/base-layout.astro';
+import Link from "@/components/link.astro";
+import {h2HeaderClass} from "@/util/constants.ts";
+import BreadcrumbLink from "../components/starwind/breadcrumb/BreadcrumbLink.astro";
 
 // I can place variables in the front matter which is what this is called between the '---'.
-
-const testObj = {
-    name: "MrPlow",
-    age: 32,
-};
-
-const testArr = ["admin", "username"];
 
 // I quickly got dark theme toggles working with shadcn
 ---
@@ -27,20 +23,25 @@ const testArr = ["admin", "username"];
 
         <!-- Adapted from HomePageContents on the Next.js website. -->
         <p>Welcome to the new KelsonCraft website, this website is
-            going
-            to be using
+            using
             Astro with Typescript and Tailwind CSS. The old one was using Python Flask and Bootstrap
             CSS.</p>
         <br>
 
-        <p> I've started working on this new website on May 29, 2026 and plan to have it up and running
-            soon. <br>
-            Once I figure out how to replicate everything I was doing on the old website, which isn't
-            much
-            and is mostly just
-            video playing and basic authentication, this should be ready for the public and to replace the
-            main website. </p>
+        <p> I started working on this new website on May 29, 2026. <br>
+            Now the videos page works on here, the about page, and the projects page are all working also. </p>
+        <br>
+        <p>
+            This website will contain my projects that I have created on Github within the
+            <Link href="/projects">/projects</Link>
+            page on the website.
+            And this website will contain other misc items that I work on.
 
+            <br>
+            I may eventually switch my videos page to embedding to my own YouTube videos if I publish more.
+        </p>
+
+        <br>
         <hr></hr>
 
         <!-- KelsonCraft logo, TODO Make this work in this astro file, it doesn't center proprely so I'll leave it in
@@ -49,17 +50,34 @@ const testArr = ["admin", "username"];
         <!--    <img src="/android-chrome-512x512.png" alt="KelsonCraft Logo 512x512" width={128}-->
         <!--         height={128}></img>-->
         <!--</div>-->
-        <HomePageLogo />
 
+        <h1 class={h2HeaderClass + " text-center"}>Website Links</h1>
+        <ul>
+            <li> Site Blog:
+                <Link href="https://blog.kelsoncraft.net/" openUrlInNewTab={true}> https://wiki.kelsoncraft.net/en/home
+                </Link>
+                    <li> Site Wiki:
+                        <Link href="https://wiki.kelsoncraft.net/en/home" openUrlInNewTab={true}>
+                            https://wiki.kelsoncraft.net/en/home
+                        </Link>
+                    </li>
+                    <li> Site Discord:
+                        <Link href="https://discord.com/invite/tdg2Bf9PpT" openUrlInNewTab={true}>
+                            https://discord.com/invite/tdg2Bf9PpT
+                        </Link>
+                    </li>
+                    <li> My github:
+                        <Link href="https://github.com/kelson8" openUrlInNewTab={true}> https://github.com/kelson8
+                        </Link>
+                    </li>
+                    <li> KCNet-Godot-Test (Godot Test game in GDScript and C#):
+                        <Link href="https://github.com/kelson8/KCNet-Godot-Test" openUrlInNewTab={true}>
+                            https://github.com/kelson8/KCNet-Godot-Test
+                        </Link>
+                    </li>
+        </ul>
 
-        <!--<p>Test object values: </p>-->
-        <!--<ul class="list-disc">-->
-        <!--    <li>{testObj.name}</li>-->
-        <!--    <li>{testObj.age}</li>-->
-        <!--</ul>-->
-
-        {/* I can display values from an array like this. */}
-        <!--<p>{testArr.map((name) => <p>{name}</p>)}</p>-->
+        <HomePageLogo/>
     </div>
 </BaseLayout>
 
