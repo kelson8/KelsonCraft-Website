@@ -37,11 +37,16 @@ services:
       build:
         context: .
         dockerfile: prod.Dockerfile
+        # https://stackoverflow.com/questions/50734271/how-to-define-build-args-in-docker-compose
+        args:
+          PUBLIC_VIDEO_HOST_DOMAIN: ${PUBLIC_VIDEO_HOST_DOMAIN}
       image: kelsoncraft-website:latest
       container_name: kelsoncraft-website
       volumes:
         # This stores the logs from the container.
         - ./logs:/var/log/nginx
+        # Mount the videos-web directory into the container as read only.
+        - ./public/videos-web:/var/www/html/videos-web:ro
       ports:
         # Static site (Nginx on port 80 in the container)
         # TODO Change this when deploying onto the VPS, make this use reverse proxy.
@@ -50,6 +55,8 @@ services:
         - "3000:80"
         # Dynamic site (Node.js on port 4321 in the container)
         # - "80:4321"
+      environment:
+        - PUBLIC_VIDEO_HOST_DOMAIN=${PUBLIC_VIDEO_HOST_DOMAIN}
       restart: unless-stopped
       networks:
         - testing

@@ -1,0 +1,17 @@
+---
+import BaseLayout from "@/layouts/base-layout.astro";
+import Link from "@/components/link.astro";
+
+import { Gist } from 'astro-embed';
+
+// https://astro-embed.netlify.app/components/gist/
+
+---
+<BaseLayout title="GitHub Gist Test">
+
+    <h1 class="text-4xl text-indigo-500 text-center text-bold">GitHub Gist Test</h1>
+
+    <!--<Gist-->
+    <Gist id="https://gist.github.com/kelson8/01c3e83ed8e3a4237beda2707061015c" />
+
+</BaseLayout>
