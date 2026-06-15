@@ -37,15 +37,22 @@ These need updated for the new Astro website.
 
 **Running webserver**
 
-I tried to get this working with docker, but couldn't figure it out.
+**With Docker**
 
-I am working on getting Docker support enabled for the website, so far it is broken though.
+This website now has Docker support.
 
-You will need Node.js 24, pnpm, and pm2 installed for this to work
+You can run the command `docker compose up --build -d` to start the webserver with Docker, it will build with pnpm first, 
+then copy the build contents into a Nginx container.
+
+**Without Docker**
+
+You will need Node.js 24, pnpm, and pm2 installed for this to work.
 
 First, install the dependencies
 * pnpm install
-  Then, run the server
+
+
+Then, run the server
 
 **Dev server**
 * pm2 start npm --name "kelsoncraft-website" -- run dev
@@ -74,18 +81,15 @@ Here is a guide on migrating from Next.js to Astro
 * https://docs.astro.build/en/guides/migrate-to-astro/from-nextjs/
 
 ### Files
-These are currently not implemented for the Astro version of this website.
-
 The JSON files for some of the pages such as misc and video pages are located here.
 * `src/json`
 
 This folder contains the page JSON files which generate the page list to be displayed
 on some of the pages, and also
-the `videos.json` which displays the videos using `src/components/read-json-files.tsx`.
+the `videos.json` which displays the videos using [src/pages/videos/[...videos].astro](https://github.com/kelson8/KelsonCraft-Website/blob/master/src/pages/videos/%5B...videos%5D.astro) 
+and [src/components/react-player.tsx](https://github.com/kelson8/KelsonCraft-Website/blob/master/src/components/react-player.tsx).
 
 ### Adding videos to the site
-I have mostly gotten the videos to work on this website, it still needs a bit of work to be complete and ready.
-
 To add videos to this site, first add them into the `src/json/videos.json` file like this
 it requires an id, title, description, file_name and if the video is restricted.
 
@@ -100,7 +104,6 @@ From `src/json/videos.json`
   }
 }
 ```
-
 
 Then, you can add the video into the `/public/videos-web` folder in the root of this repo.
 
