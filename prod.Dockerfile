@@ -22,11 +22,10 @@ RUN pnpm install --dangerously-allow-all-builds --config.confirmModulesPurge=fal
 COPY . .
 
 # Generate the prisma DB.
-# TODO Copy this output into the runner.
 # Not required for the Astro web server, unless I decide to implement logins and switch to SSR (Server Side Rendering)
 # RUN pnpm run generate:prisma-db
 
-# Test for setting the video host domain env variable
+# For setting the video host domain env variable
 ARG PUBLIC_VIDEO_HOST_DOMAIN
 ENV PUBLIC_VIDEO_HOST_DOMAIN=${PUBLIC_VIDEO_HOST_DOMAIN}
 
@@ -44,4 +43,22 @@ RUN apk add -U tzdata && cp /usr/share/zoneinfo/America/New_York /etc/localtime 
 
 COPY ./data/nginx /etc/nginx
 
+# New, copy the log rotation script
+# This is not needed.
+# https://stackoverflow.com/questions/40608055/running-a-bash-script-before-startup-in-an-nginx-docker-container
+# COPY ./data/nginx-logrotate.sh /docker-entrypoint.d/nginx-logrotate.sh
+# RUN chmod +x /docker-entrypoint.d/nginx-logrotate.sh
+# COPY ./data/nginx-logrotate.sh /scripts/nginx-logrotate.sh
+# RUN chmod +x /scripts/nginx-logrotate.sh && /bin/sh /scripts/nginx-logrotate.sh
+
+# Copy the log rotate file directly.
+COPY ./data/logrotate/nginx /etc/logrotate.d/nginx
+#
+
 COPY --from=build /usr/src/app/dist /var/www/html
+
+# ENTRYPOINT ["/scripts/nginx-logrotate.sh"]
+
+# Switch to a non-root user
+# TOOD Fix this to work, it breaks the container
+#USER nginx
