@@ -45,7 +45,7 @@ export const wikiUrl: string = "https://wiki.kelsoncraft.net";
 export const websiteAuthor: string = "kelson8";
 export const websiteCopyrightInfo: string = `© Copyright ${currentYear} ${websiteAuthor} - KCNet/KelsonCraft AGPLv3`;
 export const websiteSourceUrl: string =
-  "https://github.com/kelson8/KelsonCraft-NextJS";
+  "https://github.com/kelson8/KelsonCraft-Website";
 
 //------
 // Main containers and div classes
