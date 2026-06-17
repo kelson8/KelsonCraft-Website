@@ -1,14 +1,14 @@
 
 # KelsonCraft Website
-This will be the future home of the [KelsonCraft](https://kelsoncraft.net) website,
+This is the new home of the [KelsonCraft](https://kelsoncraft.net) website,
 it is using Astro with Tailwind and TypeScript.
 
-So far there isn't much in here, but I plan on migrating the entire website from
-Python Flask to Astro.
+I have migrated the website fully over to Astro, it was originally on Python Flask.
 
-Here is some screenshots of the website design, this isn't fully complete just yet.
+Link to the Flask website (This will probably not be updated anymore.)
+* https://github.com/kelson8/FlaskWeb
 
-These need updated for the new Astro website.
+Here is some screenshots of the website design, I need to update some of these.
 
 <details>
 <summary> Home Page </summary>
