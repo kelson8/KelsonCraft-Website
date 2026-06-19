@@ -1,0 +1,124 @@
+---
+import Link from "@/components/link.astro";
+import BaseLayout from "@/layouts/base-layout.astro";
+import {h2HeaderClass} from "@/util/constants.ts";
+
+// Mostly adapted from my Flask website
+// https://github.com/kelson8/FlaskWeb/blob/main/data/templates/projects/revc-additions.html
+---
+
+
+<BaseLayout title="ReVC Info">
+    <h1 class="text-4xl text-indigo-500 text-center text-bold p-6">
+        ReVC Additions page
+        <i class="fa-solid fa-table-cells-row-lock dark:text-white text-black"></i>
+    </h1>
+
+    <hr class="p-2">
+
+    <h2 class={h2HeaderClass + " text-center"}> Stuff I have added/modified in ReVC. </h2>
+    <p> I have added quite a bit into ReVC, I started off by learning how the C++ code for ReVC works
+        <br> which took a while to begin to understand. One of the things that took a while is
+        <br>adding ImGui as a mod menu using the F8 key with tons of features.
+
+        </p>
+    <p>
+        <br> The style and font came from the Cheat Menu project
+        <Link href="https://github.com/user-grinch/Cheat-Menu/tree/master">here</Link>
+    </p>
+    <br>
+
+    <hr class="p-2">
+    <h2 class={h2HeaderClass + " text-center"}>Lua loading</h2>
+    <!--        <br>-->
+    <p>
+        I have also added a lua loader which took a bit to figure out.
+        <br>It can run events I set up for it when the game processes anything.
+        <br> It has two files, one that gets loaded on game init/wasted/busted. And one that runs all the time for
+        events.
+    </p>
+    <br>
+
+    <hr class="p-2">
+    <h2 class={h2HeaderClass + " text-center"}>Code changes/file changes</h2>
+    <p>
+        <br> There has been a lot of changes and modifications to the code in this, a lot of changes from the Vice
+        Extended project <Link href="https://github.com/x87/gta-extended">https://github.com/x87/gta-extended</Link> have been added to
+        this.
+        <br> Messing with this project has taught me a lot of C++.
+        <br>
+        <br>
+    </p>
+
+    <p>
+
+        I have moved quite a few files into the 'ViceExtended' folder in the Vice City directory.
+        <br>
+        The userfiles folder has been moved out of the Vice City root and into the new folder.
+        <br>
+        <br>
+        Here is a list of files/folders that now load from the new directory:
+    </p>
+    <ul class="list-disc">
+        <li>TEXT/ (Game texts)</li>
+        <li>main.scm, main_d.scm, and freeroam_miami.scm (Game scripts in 'ViceExtended/data'</li>
+        <li>Some more files in 'ViceExtended/data' folder, I need to write a list of these later.</li>
+        <li>Most files from the models folder have been moved into the 'ViceExtended' folder</li>
+    </ul>
+    <br>
+
+    <hr class="p-2">
+    <h2 class={h2HeaderClass + " text-center"}> Patches for my custom content</h2>
+    <p>
+        <br> My patches for this project are located on my GitHub <Link
+            href="https://github.com/kelson8/KCNet-ReVC-Patches">https://github.com/kelson8/KCNet-ReVC-Patches</Link>
+        <br> Due to the legality of the ReVC source code, I won't share it directly but as patches.
+        <br> I would like to eventually make a tool that downloads the ReVC source code, applies these patches to it and
+        builds it.
+        <br> That shouldn't be too hard once I figure things out. I'll even set up the project to download some of the
+        updated game files.
+        <br>
+        <br>
+
+    </p>
+    <p>
+        I will need to find a place to upload some new files for this to fully function.
+    </p>
+    <br>
+
+    <hr class="p-2">
+    <h2 class={h2HeaderClass + " text-center"}> New content that needs added to the game directory </h2>
+    <p>
+        The Vice Extended folders below are located in the Vice City game directory like this: "C:\Rockstar Games\GTA
+        Vice City\ViceExtended"
+    </p>
+    <br>
+    <ul class="list-disc">
+        <li>New game texts (American.GXT)</li>
+        <li>lua scripts (ViceExtended/lua_scripts)</li>
+        <li>Some new models from Vice Extended, mostly hud.txd and weaponSights.txd in the 'ViceExtended/models' folder
+        </li>
+        <li>ini files in the root of the 'ViceExtended' folder</li>
+        <li>Some additions to animations to the gta3.img in 'models' in the Vice City folder.</li>
+        <li>Cheat menu fonts under 'ViceExtended/fonts'</li>
+    </ul>
+    <br>
+
+
+    <hr class="p-2">
+    <h2 class={h2HeaderClass + " text-center"}> About </h2>
+    <p> I will be posting videos/screenshots of the ImGui loading, lua events, and what all I am working on setting up.
+        <br> Not sure when I'll get around to adding all that, first I need to document the project a bit better on my
+        GitHub patches.
+
+        <br><br> You will need to own a copy of Vice City for this project, this won't work without it.
+
+    </p>
+
+    <p> Here is a video for a bit about the ReVC project, which adds the mod menu
+        <Link href="/videos/ReVC-KCNet-ImGuiMenu1.mp4">
+            /videos/ReVC-KCNet-ImGuiMenu1.mp4
+        </Link>
+    </p>
+
+</BaseLayout>

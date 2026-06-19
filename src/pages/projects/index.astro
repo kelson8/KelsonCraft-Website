@@ -4,6 +4,7 @@ import {faCircleInfo} from "@fortawesome/free-solid-svg-icons";
 
 import Link from "@/components/link.astro";
 import Table from "@/components/table.astro";
+import {h2HeaderClass} from "@/util/constants.ts";
 
 // https://github.com/mgmka/font-awesome-astro
 // https://blog.verybadfrags.com/posts/astro-font-awesome/
@@ -58,6 +59,17 @@ const tableRows = [
         <br>
         I tend to license most of my projects under GPLv3, or MIT but the website is licensed under
         AGPLv3.</p>
+
+    <hr class="p-2">
+    <h2 class={h2HeaderClass + " text-center"}>Projects info on website</h2>
+
+    <p>Here is the ReVC project info, I just recently added this back in from the Flask website.</p>
+        <Link href="/projects/revc">/projects/revc</Link>
+    <br>
+    <br>
+
+    <hr class="p-2">
+    <h2 class={h2HeaderClass + " text-center"}>GitHub Projects</h2>
 
     <Table headers={tableHeaders} rows={tableRows} urlToggle={true} urlTableIndex={2}/>
 </BaseLayout>
