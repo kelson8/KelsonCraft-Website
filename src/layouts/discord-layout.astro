@@ -1,19 +1,14 @@
 ---
 // import { Footer } from '../components/footer';
 import Footer from '../components/footer.astro';
-import Navbar from '../components/navbar.astro'
-// import '../styles/global.css'
+import Navbar from '../components/navbar.astro';
+import DiscordSvg from '@/components/discord/discord-svg.html';
+
+
 import {containerPageClass, websiteName} from "../util/constants.ts";
 
 import {ThemeToggle} from "../components/theme-toggle.tsx"
 
-// Using the starwind theme toggle will allow me to get rid of the theme-toggle.tsx from Shadcn.
-// Although now this doesn't seem to work, the icon doesn't show up anymore.
-// import { ThemeToggle } from "@/components/starwind/theme-toggle";
-
-// New
-// Switched to using this.
-// TODO Switch back to global.css if this messes up.
 // I moved the dark mode color into this file.
 import "@/styles/starwind.css";
 
@@ -21,11 +16,6 @@ import "@/styles/starwind.css";
 
 // The title gets set to the website name if it isn't set.
 const { title = websiteName } = Astro.props;
-
-// I got Markdown pages working in this.
-// https://tanggd.github.io/en/guides/markdown-content/
-
-// Although, I have disabled the coding-info.mdx Markdown page.
 
 ---
 
@@ -55,34 +45,6 @@ const { title = websiteName } = Astro.props;
 			}
 		</script>
 
-		<!-- For Starwind -->
-		<!--<script is:inline>-->
-		<!--	function initTheme() {-->
-		<!--		const colorTheme = localStorage.getItem("colorTheme");-->
-		<!--		if (!colorTheme) {-->
-		<!--			if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {-->
-		<!--				document.documentElement.classList.add("dark");-->
-		<!--				localStorage.setItem("colorTheme", "dark");-->
-		<!--			} else {-->
-		<!--				document.documentElement.classList.remove("dark");-->
-		<!--				localStorage.setItem("colorTheme", "light");-->
-		<!--			}-->
-		<!--		} else {-->
-		<!--			if (colorTheme === "dark") {-->
-		<!--				document.documentElement.classList.add("dark");-->
-		<!--			} else if (colorTheme === "light") {-->
-		<!--				document.documentElement.classList.remove("dark");-->
-		<!--			} else if (colorTheme === "system") {-->
-		<!--				const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;-->
-		<!--				document.documentElement.classList.toggle("dark", prefersDark);-->
-		<!--			}-->
-		<!--		}-->
-		<!--	}-->
-
-		<!--	initTheme();-->
-		<!--	document.addEventListener("astro:after-swap", initTheme);-->
-		<!--</script>-->
-
 		<!-- Font awesome -->
 		<!-- https://cdnjs.com/libraries/font-awesome -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/fontawesome.min.css"
@@ -95,12 +57,39 @@ const { title = websiteName } = Astro.props;
 			  integrity="sha512-WxpJXPm/Is1a/dzEdhdaoajpgizHQimaLGL/QqUIAjIihlQqlPQb1V9vkGs9+VzXD7rgI6O+UsSKl4u5K36Ydw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1">
 		<!--<link rel="icon" type="image/svg+xml" href="/favicon.svg" />-->
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
+        <link rel="stylesheet" href="/css/discord.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js">
+        </script>
+
+        <script src="/js/discord-scripts.js" is:inline></script>
+
+    <title>{title}</title>
+
+    <!-- <link rel="stylesheet" href="/static/css/tailwind.css"> -->
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <script>
+        // Check stored theme and apply it immediately
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme) {
+            document.documentElement.classList.add(storedTheme);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+
+	<DiscordSvg />
+
+
+
 		<!--<title>{Astro.props.title}</title>-->
-		<title>{title}</title>
+		
 	</head>
 	<body>
 
@@ -113,19 +102,23 @@ const { title = websiteName } = Astro.props;
 				<br></br>
 				<br></br>
 
-				 <div class={containerPageClass}>
+				 <!-- <div class={containerPageClass}> -->
 
 				<slot />
-				</div>
+				<!-- </div> -->
 			</div>
 		</main>
 
 	{/* <div class="flex items-center bg-blue-500 px-4 py-2 text-white hover:bg-blue-400 rounded-full fixed bottom-2 right-2"> */}
+
+	{/*
+	<!-- Disabled for Discord layout pages. --> 
 	<div class="flex items-center px-4 py-2  rounded-full fixed bottom-2 right-2">
 		<ThemeToggle client:load />
 		<!--<ThemeToggle />-->
 
 	</div>
+	*/}
 
 	<Footer />
 

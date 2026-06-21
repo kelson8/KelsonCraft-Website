@@ -1,0 +1,23 @@
+---
+import BaseLayout from "@/layouts/base-layout.astro";
+import Table from "@/components/table.astro";
+
+const tableHeaders = ["Title", "Channel Url", "Description"]
+
+const tableRows = [
+    ["Announcements", "/discord-mirror/info/Kelsoncraft-Information-announcements.html", "Archive of the announcements channel."]
+]
+
+---
+
+
+<BaseLayout title="Discord Mirror">
+    <h1 class="text-4xl text-indigo-500 text-center text-bold p-6">
+        Discord Mirror page
+        <i class="fa-solid fa-table-cells-row-lock dark:text-white text-black"></i>
+    </h1>
+
+    <p class="p-6">This will contain a list of archived channels from my Discord server.
+
+    <Table headers={tableHeaders} rows={tableRows} urlToggle={true} urlTableIndex={1}/>
+</BaseLayout>

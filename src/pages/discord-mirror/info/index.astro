@@ -1,0 +1,20 @@
+---
+import DiscordLayout from "@/layouts/discord-layout.astro";
+
+import Navbar from '@/components/navbar.astro';
+
+import HTMLSnippet from '@/components/discord/Kelsoncraft-Information-announcements.html';
+// import HTMLSnippet from '@components/discord/Kelsoncraft-Information-announcements.html';
+---
+
+
+<DiscordLayout>
+    <h1 class="text-4xl text-indigo-500 text-center text-bold p-6">
+        Discord Announcements Page
+        <i class="fa-solid fa-table-cells-row-lock dark:text-white text-black"></i>
+    </h1>
+
+<HTMLSnippet />
+
+</DiscordLayout>
+<!-- <Fragment set:html={Icon} /> -->
