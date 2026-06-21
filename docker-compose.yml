@@ -32,7 +32,8 @@ services:
 
 
   # Build the Nginx website for Astro
-  # TODO Fix this to work, currently it redirects if I go to /about, it'll go to https://ip/about instead of http://ip:8058/about
+  # TODO Look into this for the dev server in Docker
+  # https://docs.docker.com/compose/how-tos/file-watch/
   kelsoncraft-website:
       build:
         context: .
@@ -47,19 +48,56 @@ services:
         - ./logs:/var/log/nginx
         # Mount the videos-web directory into the container as read only.
         - ./public/videos-web:/var/www/html/videos-web:ro
+        # Mount the nginx data folders in here.
+        # This should solve this needing to always rebuild.
+        # Optionally, mount these as read-only.
+        # - ./data/nginx/conf.d:/etc/nginx/conf.d:ro
+        - ./data/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+        - ./data/nginx/cloudflare.conf:/etc/nginx/cloudflare.conf:ro
+        - ./data/nginx/mime.types:/etc/nginx/mime.types:ro
+        - ./data/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       ports:
         # Static site (Nginx on port 80 in the container)
         # TODO Change this when deploying onto the VPS, make this use reverse proxy.
         # Previous port: 8058, not sure why I changed this.
         #      - "127.0.0.1:3000:80"
-        - "3000:80"
+        # Changed to higher port for non-root user.
+        - "3000:8081"
+        # - "3001:8010"
         # Dynamic site (Node.js on port 4321 in the container)
         # - "80:4321"
+
+      # For a bit of security
+      # https://oneuptime.com/blog/post/2026-02-08-how-to-use-docker-compose-capadd-and-capdrop/view
+      # Disabled in case this breaks.
+      # cap_drop:
+        # - ALL
+      # cap_add:
+        # - NET_BIND_SERVICE
+        # - CHOWN
+        # - SETUID
+        # - SETGID
+
+      # New for non-root user setup
+      # https://stackoverflow.com/questions/56844746/how-to-set-uid-and-gid-in-docker-compose
       environment:
         - PUBLIC_VIDEO_HOST_DOMAIN=${PUBLIC_VIDEO_HOST_DOMAIN}
+      user: "${USER_UID}:${USER_GID}"
+
       restart: unless-stopped
       networks:
         - testing
+
+  # Mostly for mamoto anaylitcs
+  # kelsoncraft-php:
+  #   container_name: kelsoncraft-php
+  #   image: php:8.4-fpm-alpine3.22
+  #   networks:
+  #     - testing
+  #   volumes:
+  #     - ./data/:/var/www/html/:ro
+  #     # - ./logs/php.log:/var/log/fpm-php.www.log
+  #     - ./logs/php.log:/var/log/fpm-php.www.log    
 
   # For caching logins and other stuff.
   # Disabled for Astro website

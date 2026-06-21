@@ -5,8 +5,7 @@
 # I could use the '-slim' image instead of '-alpine' if this doesn't work.
 FROM node:24.16.0-alpine AS build
 
-# TODO Make this use the non-root app user.
-# TODO Make this cache the build
+# TODO Make this cache the build a bit more then what it currently does.
 
 WORKDIR /usr/src/app
 
@@ -20,6 +19,9 @@ COPY package.json pnpm-lock.yaml* ./
 RUN pnpm install --dangerously-allow-all-builds --config.confirmModulesPurge=false --frozen-lockfile
 
 COPY . .
+# TODO Fix this to work, it breaks the Nginx container when I mount some of the files directly.
+# Exclude specific files.
+# COPY public src astro.config.mjs components.json ec.config.mjs package.json pnpm-lock.yaml pnpm-workspace.yaml starwind.config.json tsconfig.json .
 
 # Generate the prisma DB.
 # Not required for the Astro web server, unless I decide to implement logins and switch to SSR (Server Side Rendering)
@@ -34,14 +36,26 @@ RUN pnpm build
 # Runner with nginx
 # https://deployn.de/en/blog/astrojs-docker/
 
-# TODO Make this run as non root user if possible.
+# I got this working with a non-root user.
 FROM nginx:alpine AS runner
 
-# Setup the timezone
+# Setup the timezone, attempt to setup Matomo for analytics.
 # https://www.programmersought.com/article/72575663274/
+# https://linuxcapable.com/how-to-install-matomo-with-nginx-on-ubuntu-linux/
+# RUN apk add -U tzdata && cp /usr/share/zoneinfo/America/New_York /etc/localtime && apk del tzdata && \
+#     wget -O /tmp/matomo-latest.tar.gz https://builds.matomo.org/matomo-latest.tar.gz && \
+#     mkdir -p /var/www/matomo && \
+#     tar -xzf /tmp/matomo-latest.tar.gz -C /var/www/matomo --strip-components=1 && \
+#     rm /tmp/matomo-latest.tar.gz
+
+# Only setup the timezone
+# # https://www.programmersought.com/article/72575663274/
 RUN apk add -U tzdata && cp /usr/share/zoneinfo/America/New_York /etc/localtime && apk del tzdata
 
-COPY ./data/nginx /etc/nginx
+# Moved to mounting in docker-compose.yml, will be ignored in here.
+# TODO Revert if this breaks.
+# I got this working in docker-compose.yml.
+# COPY ./data/nginx /etc/nginx
 
 # New, copy the log rotation script
 # This is not needed.
@@ -57,8 +71,19 @@ COPY ./data/logrotate/nginx /etc/logrotate.d/nginx
 
 COPY --from=build /usr/src/app/dist /var/www/html
 
+# https://www.rockyourcode.com/run-docker-nginx-as-non-root-user/
+# Add permissions for nginx user
+RUN chown -R nginx:nginx /var/cache/nginx && \
+        chown -R nginx:nginx /var/log/nginx && \
+        chown -R nginx:nginx /etc/nginx/conf.d
+RUN touch /var/run/nginx.pid && \
+        chown -R nginx:nginx /var/run/nginx.pid
+
+# Switch to nginx non-root user
+USER nginx
+
+# Mostly for checking what was in the dist folder of the build.
+# COPY --from=build /usr/src/app/dist-files.txt /var/www
+
 # ENTRYPOINT ["/scripts/nginx-logrotate.sh"]
 
-# Switch to a non-root user
-# TOOD Fix this to work, it breaks the container
-#USER nginx
