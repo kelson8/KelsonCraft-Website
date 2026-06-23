@@ -150,6 +150,15 @@ I'm not sure how to set a relative path to these in the Markdown.
 * Font awesome icons - This is what I use for some icons on this website.
 * Tailwind CSS - This website is using Tailwind CSS instead of Bootstrap like the old website was.
 
+## Scripts
+
+This is a list of useful scripts for this website.
+
+URL | Description |
+-------- | ---|
+| [most-accessed-ips.sh](https://github.com/kelson8/KelsonCraft-Website/blob/master/scripts/most-accessed-ips.sh) | Basic bash script to view the list of IPs that have most accessed this Nginx instance.
+| [reload-nginx.sh](https://github.com/kelson8/KelsonCraft-Website/blob/master/scripts/reload-nginx.sh) | Reload the nginx docker instance, useful for reloading the config files.
+
 ## Commands
 
 All commands are run from the root of the project, from a terminal:
