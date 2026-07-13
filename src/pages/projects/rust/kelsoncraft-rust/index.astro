@@ -1,0 +1,57 @@
+---
+
+import BaseLayout from "@/layouts/base-layout.astro";
+import Link from "@/components/link.astro";---
+
+<BaseLayout title="Kelsoncraft Rust">
+    <h1 class="text-4xl text-indigo-500 text-center text-bold p-6">
+        Kelsoncraft Rust
+        <i class="fa-solid fa-table-cells-row-lock dark:text-white text-black"></i>
+    </h1>
+
+    <p>
+        I will be adding information to my Kelsoncraft Rust project to this page.
+    </p>
+
+    <p>
+        This project has a Dev folder which contains my main development
+        with Rust, and a esp32_test folder which contains ESP32 testing.
+    </p>
+
+    <h1 class="text-4xl text-indigo-500 text-center text-bold p-6">
+        ESP32 Test
+    </h1>
+
+    <p>
+        The esp32_test folder has SSD1306 display tests, LED toggling, Button testing, and a power LED that can be turned on.
+    </p>
+
+    <br>
+    <p> Here is a list of the GPIO pins that I have used with my project.</p>
+
+    <ul class="list-disc">
+        <li>GPIO12 - Blue LED toggle button</li>
+        <li>GPIO14 - Green LED toggle button</li>
+        <li>GPIO21 - SDA for SSD1306</li>
+        <li>GPIO22 - SCL for SSD1306</li>
+        <li>GPIO25 - Blue LED</li>
+        <li>GPIO26 - Red power LED (Always turned on, lets me know when code is running.)</li>
+        <li>GPIO27 - Green LED</li>
+    </ul>
+
+
+    <h1 class="text-4xl text-indigo-500 text-center text-bold p-6">
+        Project Git Repos
+    </h1>
+    <br>
+    <p>
+        Here is a list of git repos for my Kelsoncraft Rust project
+    </p>
+    <br>
+
+    <ul class="list-disc">
+        <li><Link href="https://github.com/kelson8/Kelsoncraft-Rust">GitHub</Link></li>
+        <li><Link href="https://git.kelsoncraft.net/kelson8/Kelsoncraft-Rust">Self Hosted Forgejo</Link></li>
+    </ul>
+
+</BaseLayout>
