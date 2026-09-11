@@ -1,7 +1,9 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 
-import tailwindcss from "@tailwindcss/vite";
+// TODO Fix this tailwind css, now I have to deal with it.
+// If I disable this the website will build again.
+// import tailwindcss from "@tailwindcss/vite";
 import react from "@astrojs/react";
 import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
@@ -18,7 +20,7 @@ export default defineConfig({
   // TODO Make a .env value for this later.
   site: "https://kelsoncraft.net",
   vite: {
-    plugins: [tailwindcss()],
+    // plugins: [tailwindcss()],
   },
   
   // https://eastondev.com/blog/en/posts/dev/20251202-astro-ssr-guide/
@@ -40,7 +42,7 @@ export default defineConfig({
     playformCompress({
       // https://aaronjbecker.com/posts/astro-static-compression-minification-containerization/
       // if you use tailwind or postcss, your CSS is already minified
-      CSS: false,
+      CSS: true,
       // astro already minifies html, but not inlined javascript, so this does have an impact of about ~12% for me.
       HTML: true,
       // images imported as assets are already optimized as webp.
