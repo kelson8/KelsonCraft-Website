@@ -15,12 +15,14 @@ import expressiveCode from "astro-expressive-code";
 
 import playformCompress from "@playform/compress";
 
+import tailwindcss from '@tailwindcss/vite';
+
 // https://astro.build/config
 export default defineConfig({
   // TODO Make a .env value for this later.
   site: "https://kelsoncraft.net",
   vite: {
-    // plugins: [tailwindcss()],
+    plugins: [tailwindcss()],
   },
   
   // https://eastondev.com/blog/en/posts/dev/20251202-astro-ssr-guide/

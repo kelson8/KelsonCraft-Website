@@ -53,8 +53,6 @@ export function VideoPlayer({ videoUrl, poster, plyrControls, volume }: Props) {
 
     const type = mimeTypeFromUrl(videoUrl);
 
-    // Track video state
-
     // TODO Make this store the video volume set in local storage.
     const [playerVolume, setPlayerVolume] = React.useState<number>(defaultVolume);
     // const [playerVolume, setPlayerVolume] = React.useState([]);
@@ -77,7 +75,7 @@ export function VideoPlayer({ videoUrl, poster, plyrControls, volume }: Props) {
             controls: plyrControls,
         },
 
-        // The player renders immediately. This only runs if playback fails.
+        // This should only run if playback fails.
         onError: () => {
             console.error("The video could not be played:", videoUrl);
         },
