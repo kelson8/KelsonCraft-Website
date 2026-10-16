@@ -3,6 +3,7 @@ name: Deployment Workflow
 # https://dev.to/yousufbasir/automating-nextjs-application-deployment-with-github-actions-38ac
 
 # Taken from GitHub workflows in this repo.
+# TODO Fix this to work on Forgejo.
 
 # Build config for my Forgejo Git repo
 # https://git.kelsoncraft.net/kelson8/KelsonCraft-Website
